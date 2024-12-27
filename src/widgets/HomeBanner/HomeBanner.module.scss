@@ -1,0 +1,19 @@
+.section {
+    :global {
+        .swiper-pagination {
+            bottom: 60px;
+            text-align: right;
+            padding-right: 40px;
+        }
+        .swiper-pagination-bullet {
+            width: 54px; height: 6px; background: rgba(255, 255, 255);
+            display: inline-block;
+            border-radius: 0 ;
+            opacity: 0.4;
+        }
+        .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            opacity: 1;
+            background: rgba(255, 255, 255);
+        }
+    }
+}
