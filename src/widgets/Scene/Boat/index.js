@@ -49,7 +49,7 @@ const Boat = (props) => {
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: props?.parentRef.current,
-          markers: true,
+          // markers: true,
           end: "100%",
           scrub: true,
         },

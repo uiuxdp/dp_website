@@ -71,7 +71,7 @@ const CameraRig = ({ parentRef }) => {
     { x: -10, y: 5, z: -40 }, // Point 1
     { x: -10, y: 3, z: -10 }, // Point 2
     { x: 0, y: 0, z: 0 }, 
-    // {x: -40, y: 5, z:-40},
+    {x: -40, y: 5, z:-40},
   ];
 
   useFrame((state, delta) => {

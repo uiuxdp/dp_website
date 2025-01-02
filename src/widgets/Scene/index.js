@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import * as THREE from "three";
 import Image from "next/image";
 import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber";
@@ -16,16 +17,15 @@ import {
   MeshReflectorMaterial,
   AdaptiveDpr,
   Sphere,
-  Effects,
   Text,
   Billboard,
   Trail,
   Html,
 } from "@react-three/drei";
 import { useScene } from "./useScene";
-import Drone from "./Drone";
+// import Drone from "./Drone";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import Boat from "./Boat";
+// import Boat from "./Boat";
 import {
   Bloom,
   EffectComposer,
@@ -33,13 +33,20 @@ import {
   ToneMapping,
 } from "@react-three/postprocessing";
 import { Perf } from "r3f-perf";
-import Car from "./Car";
+// import Car from "./Car";
+const Drone = dynamic(() => import('./Drone'), { ssr: false });
+const Car = dynamic(() => import('./Car'), { ssr: false });
+const Dubai = dynamic(() => import('./Dubai'), { ssr: false });
 import CameraRig from "@/components/CameraRig";
 import Background from "@/components/Background";
-import Dubai from "./Dubai";
+// import Dubai from "./Dubai";
 import GlowMaterial from "@/components/GlowMaterial";
 import { UnrealBloomPass } from "three-stdlib";
 import TextAnim from "@/components/TextAnim";
+import Ocean from "./Ocean";
+import CameraNew from "./CameraNew";
+import Effects from "@/components/Effects";
+
 
 extend({ UnrealBloomPass });
 
@@ -119,7 +126,7 @@ const Scene = ({ parentRef }) => {
           castShadow
         /> */}
 
-      <TextAnim parentRef={parentRef} />
+      {/* <TextAnim parentRef={parentRef} /> */}
       {/* <group position={[0,10,-40]} >
         <Text fontSize={2}>
           Hyrule Castle
@@ -161,6 +168,8 @@ const Scene = ({ parentRef }) => {
         scale={0.1}
       />
 
+{/* <Ocean position-y={2} position-x={20}/> */}
+
       {/*         
             <ContactShadows
               position={[0, 0, 0]}
@@ -176,7 +185,7 @@ const Scene = ({ parentRef }) => {
 
       <AdaptiveDpr pixelated />
 
-      <Perf position="top-left" />
+      <Perf position="bottom-left" />
       {/* <Environment preset="night" /> */}
       {/* <hemisphereLight intensity={0.5} /> */}
       {/* <ContactShadows resolution={1024} frames={1} position={[0, 0, 0]} scale={15} blur={0.8} opacity={.2} far={20} /> */}
@@ -195,7 +204,8 @@ const Scene = ({ parentRef }) => {
           />
         </mesh> */}
       <CameraRig parentRef={parentRef} />
-      <OrbitControls enableZoom={false} />
+      {/* <CameraNew  parentRef={parentRef} /> */}
+      <OrbitControls enableZoom={false}  />
       <group position-y={0.1} position-z={0}>
         <mesh>
           <extrudeGeometry
@@ -232,7 +242,7 @@ const Scene = ({ parentRef }) => {
       {/* <Effects disableGamma>
         <unrealBloomPass threshold={1}  strength={1.0} radius={0.5} />
       </Effects> */}
-
+{/* <Effects/> */}
       <EffectComposer multisampling={2}>
         <Bloom mipmapBlur luminanceThreshold={0.5} />
         {/* <Scanline density={1.4} /> */}

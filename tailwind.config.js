@@ -20,13 +20,21 @@ module.exports = {
     flexBasis: {
       '1/8': '12.5%',
     },
+  
     container: {
       center: true,
-      padding: "16px",
+      padding: "12px",
       screens: {
-        "2xl": "1400px",
-        "3xl": "1700px"
+        "lg": "1140px",
+        "xl": "1336px"
       },
+    },
+    screens: {
+      'sm': '600px',
+      'md': '905px',
+      'lg': '1240px',
+      'xl': '1440px',
+      '2xl': '2000px',
     },
     extend: {
       screens: {

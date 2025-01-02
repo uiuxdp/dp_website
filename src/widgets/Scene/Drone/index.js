@@ -112,7 +112,7 @@ const Drone = ({parentRef},props) => {
       ScrollTrigger.create({
         start: "top top",
         end: "600%",
-        markers:true,
+        // markers:true,
         trigger: parentRef?.current,
         onUpdate({ progress, direction, isActive }) {
           const pro = 1 - progress;
@@ -126,7 +126,7 @@ const Drone = ({parentRef},props) => {
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          markers: true,
+          // markers: true,
           end: "100%",
           scrub: 0.4,
         },

@@ -24,6 +24,14 @@ export const getUniqueKey = () => {
   return time;
 };
 
+
+export const cartCountState = atom({
+  key: 'cartCount',
+  default: 0,
+  effects_UNSTABLE: [localStorageEffect('cartCount')],
+});
+
+
 export const headerState = atom({
   key: `header_${getUniqueKey()}`,
   default: false,

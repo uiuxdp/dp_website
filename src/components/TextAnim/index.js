@@ -89,7 +89,7 @@ const TextAnim = ({ parentRef }, props) => {
           zIndexRange={[0, -40]}
           position={[-10, 5, -40]}
           scale={0.7}
-          className="max-w-[500px]"
+       className="max-w-[500px] rounded-3xl p-8 border-[#13c37b]  bg-gradient-to-br from-[#032e1d29] to-[#10c47c]"
           rotation={[0, Math.PI / 1.2, 0]}
           ref={text1}
         >
@@ -125,12 +125,17 @@ const TextAnim = ({ parentRef }, props) => {
         lockY={false}
         lockZ={false}
       > */}
+{/* 
+padding: 34px;
+    background-image: linear-gradient(341deg, #032e1d29, #10c47c);
+    border-radius: 30px;
+    border: 2px solid #13c37b; */}
       {loaded && (
         <Html
           transform
           position={[-10, 6, -10]}
           scale={0.7}
-          className="max-w-[500px]"
+          className="max-w-[500px] rounded-3xl p-8 border-[#13c37b]  bg-gradient-to-br from-[#032e1d29] to-[#10c47c]"
           rotation={[0, -Math.PI / 1.2, 0]}
           ref={text2}
         >
