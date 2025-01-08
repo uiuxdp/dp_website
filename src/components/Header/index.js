@@ -11,6 +11,7 @@ const Header = ({}) => {
       ref={main}
       className={`fixed top-0 left-0 z-[48] w-full duration-500 ease-in-out bg-gradient-to-b  `}
     >
+      {/* <i className="icon-user"></i> */}
       {/* from-black/80 via-black/40 to-transparent */}
       <div
         className={`main-header duration-500 ease-in-out relative z-20 ${

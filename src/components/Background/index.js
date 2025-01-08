@@ -100,17 +100,14 @@ const Background = ({ backgroundColors }) => {
         <Gradient colorA={"#111"} colorB={"red"}/>
         </LayerMaterial></Sphere> */}
 
-      <fog attach="fog"  args={["#000d0a", 20, 60]} />
+      <fog attach="fog"  args={["#fff", 20, 200]} />
       {/* <pointLight position={[10, -10, -20]} intensity={10} /> */}
       {/* <pointLight position={[-10, -10, -20]} intensity={10} /> */}
       <SoftShadows samples={3} />
 
-      <Stars radius={35} depth={20} count={500} factor={1.5} />
+      <Stars radius={100} depth={20} count={500} factor={1.5} />
 
-    
-
-
-      <Sphere scale={[100, 100, 100]} rotation-y={Math.PI / 2}>
+      <Sphere scale={[500, 500, 500]} rotation-y={Math.PI / 2}>
         <LayerMaterial color={"#111"} side={THREE.BackSide}>
           <Gradient
             colorA={"#111"}
@@ -122,7 +119,7 @@ const Background = ({ backgroundColors }) => {
         </LayerMaterial>
       </Sphere>
       <Environment resolution={256} frames={Infinity}>
-        <Lightformer
+        {/* <Lightformer
           intensity={1}
           rotation-x={Math.PI / 2}
           position={[0, 2, -9]}
@@ -163,19 +160,19 @@ const Background = ({ backgroundColors }) => {
           rotation-x={Math.PI / 2}
           position={[0, 4, 9]}
           scale={[10, 1, 1]}
-        />
-        <Lightformer
+        /> */}
+        {/* <Lightformer
           intensity={1}
           rotation-y={Math.PI / 2}
           position={[-50, 2, 0]}
           scale={[100, 2, 1]}
-        />
-        <Lightformer
+        /> */}
+        {/* <Lightformer
           intensity={1}
           rotation-y={-Math.PI / 2}
           position={[50, 2, 0]}
           scale={[100, 2, 1]}
-        />
+        /> */}
         {/* <Lightformer
           form="ring"
           color="red"
@@ -185,7 +182,7 @@ const Background = ({ backgroundColors }) => {
           // onUpdate={(self) => self.lookAt(0, 0, 0)}
         /> */}
         <Sphere
-          scale={[100, 100, 100]}
+          scale={[500, 500, 500]}
           rotation-y={Math.PI / 2}
           rotation-x={Math.PI}
         >

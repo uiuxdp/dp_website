@@ -40,3 +40,8 @@ export const dialogState = atom({
   key: "dialogState", 
   default: false,     
 });
+
+export const carRef = atom({
+  key: "refAtom", 
+  default: null,
+});

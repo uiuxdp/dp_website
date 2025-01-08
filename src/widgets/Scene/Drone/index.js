@@ -80,15 +80,17 @@ const Drone = ({parentRef},props) => {
   const CURVE_DISTANCE = 10;
   // Define the CatmullRomCurve3
   const points = [
-    // new THREE.Vector3(0, 2, 0),
-    // new THREE.Vector3(0, 2, -CURVE_DISTANCE),
-    new THREE.Vector3(-15, 3, -1.5 * CURVE_DISTANCE),
-    new THREE.Vector3(-5, 3, -1.2 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 2.5, -1.2 * CURVE_DISTANCE),
-    new THREE.Vector3(10, 2, -2 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 4, -5 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 13, -6 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 18, -7 * CURVE_DISTANCE),
+    new THREE.Vector3(30, 5, -1 * CURVE_DISTANCE),
+    new THREE.Vector3(40, 5, -2.5 * CURVE_DISTANCE),
+    new THREE.Vector3(30, 5, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(10, 4, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -3 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -2 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -1.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, 0.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 5, 1.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 8, 2.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 15, 3.5 * CURVE_DISTANCE),
   ];
   //   const curve = new THREE.CatmullRomCurve3(points);
 
@@ -101,7 +103,6 @@ const Drone = ({parentRef},props) => {
     const shape = new THREE.Shape();
     shape.moveTo(0, -0.01);
     shape.lineTo(0, 0.01);
-
     return shape;
   }, [curve]);
   useGSAP(
@@ -111,26 +112,18 @@ const Drone = ({parentRef},props) => {
       // gsap.set(ref.current.rotation, { y: Math.PI/2,  });
       ScrollTrigger.create({
         start: "top top",
-        end: "600%",
+        end: "1000%",
         // markers:true,
         trigger: parentRef?.current,
         onUpdate({ progress, direction, isActive }) {
           const pro = 1 - progress;
           const position = curveRef.current.getPointAt(pro);
-          const lookAtTarget = curveRef.current.getPointAt((pro + 0.01) % 1);
+          // const lookAtTarget = curveRef.current.getPointAt((pro + 0.01) % 1);
           cameraRail.current.position.copy(position);
-          cameraRail.current.lookAt(lookAtTarget);
+          // cameraRail.current.lookAt(lookAtTarget);
         },
       });
       gsap.set(ref.current.position, { z: -2 });
-      const tl1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: parentRef.current,
-          // markers: true,
-          end: "100%",
-          scrub: 0.4,
-        },
-      });
       //   console.log(model,"modelmodel");
       // tl1.to(ref.current.position, { z: -1 });
       // tl1.to(ref.current.position, { z: 1 });

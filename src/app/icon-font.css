@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'dp-icons';
+    src:  url('/icon-font/dp-icons.eot?yi3v9g');
+    src:  url('/icon-font/dp-icons.eot?yi3v9g#iefix') format('embedded-opentype'),
+      url('/icon-font/dp-icons.ttf?yi3v9g') format('truetype'),
+      url('/icon-font/dp-icons.woff?yi3v9g') format('woff'),
+      url('/icon-font/dp-icons.svg?yi3v9g#dp-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'dp-icons' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-arrow-b:before {
+    content: "\e90f";
+  }
+  .icon-arrow-l:before {
+    content: "\e910";
+  }
+  .icon-arrow-r:before {
+    content: "\e911";
+  }
+  .icon-o4:before {
+    content: "\e900";
+  }
+  .icon-a11y:before {
+    content: "\e901";
+  }
+  .icon-user:before {
+    content: "\e902";
+  }
+  .icon-apps:before {
+    content: "\e903";
+  }
+  .icon-chat:before {
+    content: "\e904";
+  }
+  .icon-close:before {
+    content: "\e905";
+  }
+  .icon-happiness:before {
+    content: "\e906";
+  }
+  .icon-location:before {
+    content: "\e907";
+  }
+  .icon-mail-f:before {
+    content: "\e908";
+  }
+  .icon-mail-o:before {
+    content: "\e909";
+  }
+  .icon-menu:before {
+    content: "\e90a";
+  }
+  .icon-news:before {
+    content: "\e90b";
+  }
+  .icon-call:before {
+    content: "\e90c";
+  }
+  .icon-seach:before {
+    content: "\e90d";
+  }
+  .icon-arrow-t:before {
+    content: "\e90e";
+  }
+  

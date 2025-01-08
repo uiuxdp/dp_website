@@ -80,21 +80,9 @@ export const useHeader = () => {
     };
   }, []);
 
-  const onSelectChange = (lang) => {
-    const nextLocale = lang;
-
-    startTransition(() => {
-      router.replace(
-        // Adjust this line according to your routing logic
-        { pathname, params },
-        { locale: nextLocale }
-      );
-    });
-  };
 
   return {
     main,
     isScrollingDown,
-    onSelectChange,
   };
 };

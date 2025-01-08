@@ -19,7 +19,7 @@ const Ocean = (props) => {
       waterNormals,
       sunDirection: new THREE.Vector3(),
       sunColor: 0xffffff,
-      waterColor: 0x001e0f,
+      waterColor: "skyblue",
       distortionScale: 3.7,
       fog: true,
       format: gl.encoding

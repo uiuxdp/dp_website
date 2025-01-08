@@ -1,6 +1,7 @@
 // import { Anek_Malayalam } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
+import "./icon-font.css"
 import GlobalProviders from "@/components/GlobalProviders";
 import nextFetch from "@/utils/nextFetch";
 import { GLOBAL } from "@/constants/apiRoutes";

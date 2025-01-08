@@ -62,7 +62,8 @@
     "three": "^0.171.0",
     "use-debounce": "^10.0.2",
     "vaul": "^0.9.1",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "20.14.11",

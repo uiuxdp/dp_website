@@ -11,7 +11,7 @@ export default function CameraNew({ parentRef }) {
   const group = useRef();
   const cameraRef=useRef()
   const { nodes, materials, animations, scene } = useGLTF(
-    "/images/models/camera.glb"
+    "/images/models/3_camera.glb"
   );
   const { actions, names } = useAnimations(animations, group);
 
@@ -96,10 +96,10 @@ export default function CameraNew({ parentRef }) {
       ref={group}
       // {...props}
       dispose={null}
-      name="RS_Camera"
+      name="Cam_01"
       position={[-10, 5, -40]}
     >
-      <primitive object={scene} />
+      {/* <primitive object={scene} /> */}
       <PerspectiveCamera makeDefault ref={cameraRef} 
       // far={100} near={0.1} 
       fov={75} >

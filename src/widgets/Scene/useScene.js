@@ -67,7 +67,6 @@ export const useScene = ({parentRef}) => {
           const tl1 = gsap.timeline({
             scrollTrigger: {
               trigger: main.current,
-              markers: true,
               end: "100%",
               scrub: true,
             },
