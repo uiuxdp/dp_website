@@ -228,7 +228,7 @@ const Drone = ({parentRef},props) => {
       <group ref={ref} {...props} dispose={null}>
         <group ref={cameraRail}>
           <group ref={head}>
-            <PoliceLight />
+            {/* <PoliceLight /> */}
             <group name="uploads_files_3653841_Drone_Obobj">
               <mesh
                 name="GEO_Propeller_03_remesh_remesh_(Copy)"

@@ -31,6 +31,9 @@ const Background = ({ backgroundColors }) => {
 
   return (
     <>
+    {/* <Environment environmentIntensity={0.1} preset="night">
+      <Lightformer type="rect" scale={10}    position={[0, 4, -9]} color={"#0d4e7b"} intensity={3.5}/>
+    </Environment> */}
       {/* <Environment resolution={512}>
         <Lightformer
           intensity={2}
@@ -100,10 +103,10 @@ const Background = ({ backgroundColors }) => {
         <Gradient colorA={"#111"} colorB={"red"}/>
         </LayerMaterial></Sphere> */}
 
-      <fog attach="fog"  args={["#fff", 20, 200]} />
+      {/* <fog attach="fog"  args={["#fff", 20, 200]} /> */}
       {/* <pointLight position={[10, -10, -20]} intensity={10} /> */}
       {/* <pointLight position={[-10, -10, -20]} intensity={10} /> */}
-      <SoftShadows samples={3} />
+      {/* <SoftShadows samples={3} /> */}
 
       <Stars radius={100} depth={20} count={500} factor={1.5} />
 
@@ -118,57 +121,57 @@ const Background = ({ backgroundColors }) => {
           />
         </LayerMaterial>
       </Sphere>
-      <Environment resolution={256} frames={Infinity}>
+      <Environment resolution={256} frames={Infinity} preset="night">
         {/* <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 2, -9]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, -6]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, -3]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, 0]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, 3]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, 6]}
           scale={[10, 1, 1]}
         />
         <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-x={Math.PI / 2}
           position={[0, 4, 9]}
           scale={[10, 1, 1]}
         /> */}
         {/* <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-y={Math.PI / 2}
           position={[-50, 2, 0]}
           scale={[100, 2, 1]}
         /> */}
         {/* <Lightformer
-          intensity={1}
+          intensity={.4}
           rotation-y={-Math.PI / 2}
           position={[50, 2, 0]}
           scale={[100, 2, 1]}
@@ -181,7 +184,7 @@ const Background = ({ backgroundColors }) => {
           position={[10, 5, 10]}
           // onUpdate={(self) => self.lookAt(0, 0, 0)}
         /> */}
-        <Sphere
+        {/* <Sphere
           scale={[500, 500, 500]}
           rotation-y={Math.PI / 2}
           rotation-x={Math.PI}
@@ -195,8 +198,8 @@ const Background = ({ backgroundColors }) => {
               end={end}
             />
           </LayerMaterial>
-        </Sphere>
-      </Environment>
+        </Sphere>*/}
+      </Environment> 
 
       {/* <gridHelper /> */}
     </>

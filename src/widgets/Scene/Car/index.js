@@ -13,6 +13,7 @@ import FlashingLight from "@/components/FlashingLight";
 import PoliceLight from "@/widgets/PoliceLight";
 // import GlowMaterialW from "./Glowmaterial";
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils';
+import { useControls } from "leva";
 
 const Car = forwardRef((props, ref) => {
   gsap.registerPlugin(ScrollTrigger);
@@ -52,8 +53,8 @@ const Car = forwardRef((props, ref) => {
       roughness: 0.4,
       color: "#181818",
     });
-    applyProps(materials.carpaint_second, { metalness: 0, color: "#292929" });
-    applyProps(materials.carpaint, { metalness: 0.75, color: "#eee" });
+    applyProps(materials.carpaint_second, { metalness: 1, color: "#292929" });
+    applyProps(materials.carpaint, {   metalness: 0.75, roughness: 0.2, color: "#eee" });
     applyProps(materials.rim, { metalness: 0.2, roughness: 0, color: "black" });
     // Make front and tail LEDs emit light
     // applyProps(materials.clearglass, { emissiveIntensity: 3, toneMapped: false })
@@ -106,14 +107,18 @@ const Car = forwardRef((props, ref) => {
     //   material: materials[matName],
     // }));
 // console.log(mergedMeshes,"groupedGeometriesgroupedGeometriesgroupedGeometries");
-
+const { x, y, z } = useControls({
+  x: { value: 0, min: -4, max: 4, step: 0.01 },
+  y: { value: 0.58, min: -4, max: 4, step: 0.01 },
+  z: { value: 1.75, min: -4, max: 4, step: 0.01 },
+});
 
   return (
     <group ref={ref} {...props} dispose={null}>
       {/* <primitive object={scene} /> */}
-      <group position-y={1.3} position-z={2}>
+      <group  position={[x, y, z]}>
         {/* <GlowMaterialW/> */}
-        {/* <PoliceLight /> */}
+        <PoliceLight />
       </group>
 
       <group scale={0.007} >
@@ -136,18 +141,19 @@ const Car = forwardRef((props, ref) => {
           geometry={nodes["W-Motors_Ghiath_Dubai_Police_2021_3"].geometry}
           material={materials.chrome}
         />
-        <mesh
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes["W-Motors_Ghiath_Dubai_Police_2021_4"].geometry}
           material={materials.clearglass}
-        />
-        <mesh
+        /> */}
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes["W-Motors_Ghiath_Dubai_Police_2021_5"].geometry}
           material={materials.windowglass}
-        />
+        /> */}
+        {/* mirror */}
         <mesh
           castShadow
           receiveShadow
@@ -184,6 +190,8 @@ const Car = forwardRef((props, ref) => {
           geometry={nodes["W-Motors_Ghiath_Dubai_Police_2021_11"].geometry}
           material={materials.red}
         />
+
+        {/* car body */}
         <mesh
           castShadow
           receiveShadow

@@ -7,7 +7,6 @@ import { Sphere } from "@react-three/drei";
 import { easing } from "maath";
 import { PointLightHelper } from "three";
 
-
 const glowRed = new THREE.MeshBasicMaterial({
   color: new THREE.Color(7, 0, 0.5),
   toneMapped: false,
@@ -25,6 +24,7 @@ const glowGreen = new THREE.MeshBasicMaterial({
 const PoliceLight = (props) => {
   const exhaust = useRef(null);
   const clock =new THREE.Clock(false)
+  
   // useFrame(() => {
 
   //   console.log( clock.getElapsedTime() * 200 ,"exhaust.current.scale.x");
@@ -32,16 +32,16 @@ const PoliceLight = (props) => {
   //   // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
   // })
   
-  
+
   return (
-    <group>
-      {/* <mesh ref={exhaust} scale={[1, 1, 13]} position={[0, 1, 30]}>
+    <group {...props}>
+      {/* <mesh ref={exhaust} scale={[1, 1, 13]} position={[0, 1, 30]}  material-emissiveIntensity={10} >
       <boxGeometry args={[2, 1, 2]} />
         <meshBasicMaterial color="lightblue" />
       </mesh> */}
       <LightItem position={[0, 0, 0]} initialMaterial={glowRed} />
-      <LightItem position={[0.05, 0, 0]} initialMaterial={glowBlue} />
-      <LightItem position={[-0.05, 0, 0]} initialMaterial={glowBlue} />
+      <LightItem position={[0.1, 0, 0]} initialMaterial={glowBlue} />
+      <LightItem position={[-0.1, 0, 0]} initialMaterial={glowBlue} />
     </group>
   );
 };
@@ -57,30 +57,45 @@ export default PoliceLight;
 // };
 
 const LightItem = ({ initialMaterial, ...props }) => {
+ 
+  const exhaust = useRef();
   const meshRef = useRef();
-  const isOn = useRef(true);
-  const blinkSpeed = 3;
+  // const isOn = useRef(true);
+  // const blinkSpeed = 3;
 
+  // useFrame((state) => {
+  //   const elapsedTime = state.clock.getElapsedTime();
+  //   // Toggle light on and off based on time
+  //   isOn.current = Math.sin(elapsedTime * Math.PI * 2 * blinkSpeed) > 0;
+  //   const material = meshRef.current.material;
+  //   if (material) {
+  //     material.opacity = isOn.current ? 1 : 0.2; // Adjust opacity for blinking effect
+  //     material.transparent = true;
+  //   }
+  // });
   useFrame((state) => {
-    const elapsedTime = state.clock.getElapsedTime();
-    // Toggle light on and off based on time
-    isOn.current = Math.sin(elapsedTime * Math.PI * 2 * blinkSpeed) > 0;
-    const material = meshRef.current.material;
-    if (material) {
-      material.opacity = isOn.current ? 1 : 0.2; // Adjust opacity for blinking effect
-      material.transparent = true;
-    }
-  });
+    meshRef.current.scale.x = .5 + Math.sin(state.clock.getElapsedTime() * 1000)
+    meshRef.current.scale.y = .5 + Math.sin(state.clock.getElapsedTime() * 1000)
+  })
+
+
 
   return (
-    <mesh
+  
+    <>
+    {/* <mesh ref={exhaust} scale={[1, 2, 1]}   {...props} >
+        <boxGeometry args={[0.06, 0.02, 0.05]}  />
+        <meshBasicMaterial />
+      </mesh> */}
+      <mesh
       ref={meshRef}
       material={initialMaterial}
       castShadow
       receiveShadow
       {...props}
     >
-      <boxGeometry args={[0.01, 0.08, 0.05]} />
+      <boxGeometry args={[0.06, 0.02, 0.02]} />
     </mesh>
+    </>
   );
 };

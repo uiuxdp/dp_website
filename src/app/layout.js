@@ -15,7 +15,7 @@ import Header from "@/components/Header";
 // });
 
 
-const inter = localFont({
+const dp_font = localFont({
   src: [
     {
       path: './fonts/Dubai-Light.ttf',
@@ -48,7 +48,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${inter.variable}`}>
+      <body className={`${dp_font.className} ${dp_font.variable}`}>
         <GlobalProviders>
           <Header />
           {children}

@@ -6,25 +6,13 @@ import { Expo, Power3, gsap, Elastic } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber";
 import {
-  useGLTF,
-  Environment,
-  ContactShadows,
   OrbitControls,
-  PerspectiveCamera,
-  ScrollControls,
-  Scroll,
-  CameraControls,
-  Stats,
-  Lightformer,
-  MeshReflectorMaterial,
   AdaptiveDpr,
-  Sphere,
-  Text,
-  Billboard,
-  Trail,
-  Html,
   Cloud,
   Bvh,
+  PerformanceMonitor,
+  Environment,
+  MeshReflectorMaterial,
 } from "@react-three/drei";
 import { useScene } from "./useScene";
 // import Drone from "./Drone";
@@ -32,9 +20,12 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 // import Boat from "./Boat";
 import {
   Bloom,
+  DepthOfField,
   EffectComposer,
+  Noise,
   Scanline,
   ToneMapping,
+  Vignette,
 } from "@react-three/postprocessing";
 import { Perf } from "r3f-perf";
 // import Car from "./Car";
@@ -57,7 +48,10 @@ import Boat from "./Boat";
 import Rounds from "./Rounds";
 import Boats from "./Boats";
 // import Car from "./Car";
-
+import Windows from "./Windows";
+import StreetLight from "./StreetLight";
+import  {BlendFunction}  from "postprocessing";
+import Road from "./Road";
 extend({ UnrealBloomPass });
 
 const Scene = ({ parentRef, progressLine }) => {
@@ -134,33 +128,51 @@ const Scene = ({ parentRef, progressLine }) => {
   useGSAP(
     (context, contextSafe) => {
       if (carRef.current && isCarRefReady) {
-        gsap.set(progressLine.current, { scaleX:0, transformOrigin:"left left" });
-        gsap.set(carRef.current?.position, { z:15, x: 0, y: .55 });
+        gsap.set(progressLine.current, {
+          scaleX: 0,
+          transformOrigin: "left left",
+        });
+        gsap.set(carRef.current?.position, { z: 15, x: 0, y: 0.55 });
         // gsap.set(cameraWrapRef.current?.position, { y: 10 });
-        gsap.set([boatRef2.current.rotation,boatRef3.current.rotation],{x:-Math.PI / 2,y:0,z:0})
-        gsap.set([boatRef1.current.rotation],{x:-Math.PI / 2,y:0,z:Math.PI / 8})
-        gsap.set(boatRef1.current.position,{x:20,y:-3.8,z:-30})
-        gsap.set(boatRef2.current.position,{x:20,y:-3.8,z:-20})
-        gsap.set(boatRef3.current.position,{x:20,y:-3.8,z:-5})
-        gsap.set([".title1",".title2"],{autoAlpha: 0, yPercent: 100})
-
-
-
-
-
+        gsap.set([boatRef2.current.rotation, boatRef3.current.rotation], {
+          x: -Math.PI / 2,
+          y: 0,
+          z: 0,
+        });
+        gsap.set([boatRef1.current.rotation], {
+          x: -Math.PI / 2,
+          y: 0,
+          z: Math.PI / 8,
+        });
+        gsap.set(boatRef1.current.position, { x: 20, y: -3.8, z: -30 });
+        gsap.set(boatRef2.current.position, { x: 20, y: -3.8, z: -20 });
+        gsap.set(boatRef3.current.position, { x: 20, y: -3.8, z: -5 });
+        // gsap.set([".title1", ".title2"], { autoAlpha: 0, yPercent: 100 });
 
         function progressAnim() {
           var tl = gsap.timeline();
-      //           tl.to(".title1",{yPercent: 0, autoAlpha: 1})
-      // tl.to(".title1",{yPercent: -100,autoAlpha: 0}, "+=0.5")
-      // tl.to(".title2",{yPercent: 0, autoAlpha: 1}, "<")
-      // tl.to(".title2",{yPercent: -100,autoAlpha: 0}, "+=0.5")
-          tl.to(progressLine.current, { scaleX: 1, duration:10});
+          //           tl.to(".title1",{yPercent: 0, autoAlpha: 1})
+          // tl.to(".title1",{yPercent: -100,autoAlpha: 0}, "+=0.5")
+          // tl.to(".title2",{yPercent: 0, autoAlpha: 1}, "<")
+          // tl.to(".title2",{yPercent: -100,autoAlpha: 0}, "+=0.5")
+          tl.to(progressLine.current, { scaleX: 1, duration: 10 });
           // tl.to(cameraWrapRef.current.position,{y:0, duration: 1},"<")
-          tl.to(carRef.current?.position, { z: -50, duration: 3},.6);
-          tl.to(boatRef1.current.position, { x: 60, duration: 2, ease:"expo.inOut"},1.6);
-          tl.to(boatRef2.current.position, { x: 60, duration: 2},2);
-          tl.to(boatRef3.current.position, { x: 60, duration: 2},2.5);
+          tl.to(carRef.current?.position, { z: -50, duration: 3 }, 0.6);
+          tl.to(
+            boatRef1.current.position,
+            { x: 60, duration: 2, ease: "expo.inOut" },
+            1.6
+          );
+          tl.to(
+            boatRef2.current.position,
+            { x: 60, duration: 2, ease: "expo.inOut" },
+            2
+          );
+          tl.to(
+            boatRef3.current.position,
+            { x: 60, duration: 2, ease: "expo.inOut" },
+            2.5
+          );
           return tl;
         }
 
@@ -211,12 +223,15 @@ const Scene = ({ parentRef, progressLine }) => {
         // master.add(carAnimation(), 10);
         // master.add(cameraAnim2(),"<25%");
         // master.add(cameraAnim3());
-// , "+=1"
+        // , "+=1"
         var total = master.duration();
         console.log(total, "totaltimm");
       }
     },
-    { scope: parentRef, dependencies: [carRef, isCarRefReady, cameraRef, boatRef1, progressLine] }
+    {
+      scope: parentRef,
+      dependencies: [carRef, isCarRefReady, cameraRef, boatRef1, progressLine],
+    }
   );
 
   const backgroundColors = useRef({
@@ -238,14 +253,19 @@ const Scene = ({ parentRef, progressLine }) => {
           shadow-mapSize={2048}
           castShadow
         /> */}
-
+      {/* <directionalLight
+            castShadow
+            position={[10, 20, 15]}
+            // shadow-camera-right={0}
+            // shadow-camera-top={0}
+            // shadow-camera-left={0}
+            // shadow-camera-bottom={0}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            intensity={.5}
+            shadow-bias={-0.0001}
+          /> */}
       {/* <TextAnim parentRef={parentRef} /> */}
-      {/* <group position={[0,10,-40]} >
-        <Text fontSize={2}>
-          Hyrule Castle
-          <meshStandardMaterial color={"red"} />
-        </Text>
-      </group> */}
 
       <group
         ref={modelWrap}
@@ -253,12 +273,12 @@ const Scene = ({ parentRef, progressLine }) => {
         rotation={[0, 0, 0]}
         position={[0, 0, 3]}
       >
-        <Drone
+        {/* <Drone
           ref={model}
           parentRef={parentRef}
           onUpdate={setModel}
           scale={1}
-        />
+        /> */}
       </group>
 
       {/* <Boat
@@ -270,7 +290,7 @@ const Scene = ({ parentRef, progressLine }) => {
       /> */}
 
       <Bvh firstHitOnly>
-        <Boats ref1={boatRef1} ref2={boatRef2} ref3={boatRef3}/>
+        <Boats ref1={boatRef1} ref2={boatRef2} ref3={boatRef3} />
       </Bvh>
       {/* <Suspense fallback={null}> */}
       <Car ref={carRef} rotation={[0, -Math.PI, 0]} />
@@ -290,7 +310,9 @@ const Scene = ({ parentRef, progressLine }) => {
         position={[12.9, 0, 0]}
         scale={30}
       />
-
+      <Windows />
+      <Road/>
+      <StreetLight position={[-1, -7, 0]} />
       <Ocean position-y={-4.5} scale={400} position-x={20} />
 
       {/*         
@@ -307,7 +329,10 @@ const Scene = ({ parentRef, progressLine }) => {
       </Effects> */}
 
       <AdaptiveDpr pixelated />
-
+      <PerformanceMonitor
+        onIncline={() => console.log("good dpr")}
+        onDecline={() => console.log("bad dpr")}
+      />
       <Perf position="bottom-left" />
       {/* <Environment preset="night" /> */}
       {/* <hemisphereLight intensity={0.5} /> */}
@@ -326,16 +351,15 @@ const Scene = ({ parentRef, progressLine }) => {
             roughness={1}
           />
         </mesh> */}
-        <group ref={cameraWrapRef}>
-          
-      <CameraRig
-        cameraRef={cameraRef}
-        progressRef={progressRef}
-        curveRef={curveRef}
-      />
-</group>
+      <group ref={cameraWrapRef}>
+        <CameraRig
+          cameraRef={cameraRef}
+          progressRef={progressRef}
+          curveRef={curveRef}
+        />
+      </group>
       {/* <CameraNew  parentRef={parentRef} /> */}
-      <OrbitControls  enableZoom={false} />
+      <OrbitControls enableZoom={false} />
       {/* <group position-y={0.1} position-z={0}>
         <mesh>
           <extrudeGeometry
@@ -361,13 +385,6 @@ const Scene = ({ parentRef, progressLine }) => {
           />
         </mesh>
       </group> */}
-      {/* <EffectComposer disableNormalPass > */}
-      {/* <Bloom 
-            resolutionX={.5}
-            resolutionY={.5} 
-          opacity={1} luminanceThreshold={0.4} mipmapBlur luminanceSmoothing={1} intensity={.5}  radius={0.2}  /> */}
-      {/* <ToneMapping />
-        </EffectComposer> */}
 
       <Suspense fallback={null}>
         <Cloud position={[35, 130, -45]} speed={0.2} opacity={1} />
@@ -380,13 +397,21 @@ const Scene = ({ parentRef, progressLine }) => {
       {/* <Effects disableGamma>
         <unrealBloomPass threshold={1}  strength={1.0} radius={0.5} />
       </Effects> */}
-      <Effects />
-      {/* <EffectComposer multisampling={2}> */}
-      {/* <Bloom mipmapBlur luminanceThreshold={0.5} /> */}
-      {/* <Scanline density={1.4} /> */}
-      {/* </EffectComposer> */}
-      <axesHelper position-y={1} args={[40, 40, 40]} />
-      <gridHelper />
+      {/* <Effects /> */}
+
+      <EffectComposer multisampling={2}>
+        <Bloom mipmapBlur luminanceThreshold={1} />
+        <Vignette
+          offset={0.5} // vignette offset
+          darkness={0.5} // vignette darkness
+          eskil={false} // Eskil's vignette technique
+        />
+         {/* <Noise premultiply blendFunction={BlendFunction.SCREEN}  /> */}
+
+        {/* <Scanline density={3} opacity={.2} /> */}
+      </EffectComposer>
+      {/* <axesHelper position-y={1} args={[40, 40, 40]} /> */}
+      {/* <gridHelper /> */}
     </>
   );
 };

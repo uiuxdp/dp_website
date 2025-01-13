@@ -2,6 +2,8 @@
 import * as THREE from "three";
 import { Expo, Power3, gsap, Elastic } from "gsap";
 import {
+  GradientTexture,
+  MeshReflectorMaterial,
   MeshTransmissionMaterial,
   useAnimations,
   useGLTF,
@@ -20,16 +22,14 @@ const DubaiNew = (props) => {
   //   const stripe = useRef();
   //   const light = useRef();
   const propeller1 = useRef();
-  const { camera } = useThree();
-
+  
   const { nodes, materials, scene, animations } = useGLTF(
     "/images/models/dubai1.glb"
   );
 
-applyProps(materials.White, { metalness: 0.5, roughness: 0.4, color: '#181818' })
+applyProps(materials.White, { metalness: 0.5, roughness: 0.1, color: '#181818' })
 applyProps(materials["Mat"], { metalness: 0, roughness: 0.3, color: '#000' })
-applyProps(materials[""], { metalness: 0, roughness: 0.3, color: '#000' })
-
+applyProps(materials[""], { metalness: 0.6, roughness: 0.3, color: '#000' })
 
   const { ref, actions, names } = useAnimations(animations);
   // useFrame((state, delta) => {
@@ -108,10 +108,23 @@ applyProps(materials[""], { metalness: 0, roughness: 0.3, color: '#000' })
     { scope: ref, dependencies: [] }
   );
 
+
   return (
+    <>
+ 
+      {/* <line  geometry={lineGeometry} position={[0, 0, 0]} >
+          <meshStandardMaterial attach="material" linewidth={10} linecap={'round'} linejoin={'round'} color={"#00ca76"}  emissive="#00ca76" emissiveIntensity={8} toneMapped={false}/>
+        </line> */}
     <group {...props} ref={ref} dispose={null}>
-      <primitive object={scene} />
+      {/* <primitive object={scene} /> */}
+    
+      <mesh name="Bridge_1" geometry={nodes.Bridge_1.geometry} material={materials.White} position={[-0.434, -0.171, -1.682]} scale={0.079} />
+        <mesh name="Areasbuilding" geometry={nodes.Areasbuilding.geometry} material={materials.Mat} position={[-4.119, -.10, -6.8]} rotation={[-Math.PI / 2, 0, -0.236]} scale={100} >
+    </mesh>
+        <mesh name="Extrude" geometry={nodes.Extrude.geometry} material={nodes.Extrude.material} position={[-0.394, -0.531, 3.474]} />
+        {/* <mesh name="water" geometry={nodes.water.geometry} material={materials.water} position={[-0.438, -0.166, -0.751]} rotation={[0, 0.694, 0]} /> */}
     </group>
+    </>
   );
 };
 export default DubaiNew;

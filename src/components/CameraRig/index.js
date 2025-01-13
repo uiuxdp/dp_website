@@ -1,18 +1,20 @@
 import React, { useRef, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
-import { PerspectiveCamera } from "@react-three/drei";
+import { CurveModifier, PerspectiveCamera } from "@react-three/drei";
 import { Expo, Power3, gsap, Elastic } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
- 
+  const curveRef1 = useRef()
+
+
   const ref = useRef();
   //   const progress = useRef(0);
   const CURVE_DISTANCE = 10;
   const LINE_NB_POINTS = 1000;
-  // Define the CatmullRomCurve3
+
   const points = [
     new THREE.Vector3(40, 300, -4 * CURVE_DISTANCE),
     new THREE.Vector3(40, 200, -4 * CURVE_DISTANCE),
@@ -55,8 +57,10 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
 
   //   const curve = new THREE.CatmullRomCurve3(points);
   const curve = useMemo(() => {
-    return new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.5);
+    return new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.4);
   }, []);
+
+  // const curve11 = useMemo(() => new THREE.CatmullRomCurve3(points, true, 'centripetal'), [points])
   const curve1 = useMemo(() => {
     return new THREE.CatmullRomCurve3(points1, false, "catmullrom", 0.5);
   }, []);
@@ -101,10 +105,10 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
     { x: 0, y: 30, z: 40 }, 
     { x: 0, y: 15, z: 40 }, 
     { x: 0, y: 0, z: 0 }, 
-    { x: 0, y: 0, z: 0 }, 
-    { x: 0, y: 0, z: 0 }, 
-    { x: -10, y: -30, z: 40 }, 
-    { x: -10, y: -30, z: 40 }, 
+    // { x: 0, y: 0, z: 0 }, 
+    // { x: 0, y: 0, z: 0 }, 
+    { x: -10, y: -30, z: -40 }, 
+    { x: -10, y: 30, z: -40 }, 
   ];
 
   useFrame((state, delta) => {
@@ -200,6 +204,7 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
           />
           <meshStandardMaterial
             color={"red"}
+            emissive="#00ca76" emissiveIntensity={8} toneMapped={false} 
             // red
             // map={diffuse}
             // normalMap={normal}
