@@ -16,21 +16,34 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
   const LINE_NB_POINTS = 1000;
 
   const points = [
-    new THREE.Vector3(40, 300, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(40, 200, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(40, 100, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(40, 30, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(40, -2, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(30, -2, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(20, -2, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(10, 1.2, -3.8 * CURVE_DISTANCE),
-    new THREE.Vector3(5, 1.2, -3.3 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 1, -2 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 1, -1 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 1, 0 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 3, 1 * CURVE_DISTANCE),
     new THREE.Vector3(0, 12, 2 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 15, 3 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 3, 1 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 1, 0 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 1, -1 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 1, -2 * CURVE_DISTANCE),
+    new THREE.Vector3(5, 1.2, -3.3 * CURVE_DISTANCE),
+    new THREE.Vector3(10, 1.2, -3.8 * CURVE_DISTANCE),
+    new THREE.Vector3(20, -2, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(30, -2, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(40, -2, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(40, 30, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(40, 100, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(50, 150, -4 * CURVE_DISTANCE),
+    // new THREE.Vector3(40, 300, -4 * CURVE_DISTANCE),
+   
+  
+   
+   
+    
+   
+    
+    
+   
+
+   
+    
+   
+    
   ];
 
   const points1 = [
@@ -107,8 +120,8 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
     { x: 0, y: 0, z: 0 }, 
     // { x: 0, y: 0, z: 0 }, 
     // { x: 0, y: 0, z: 0 }, 
-    { x: -10, y: -30, z: -40 }, 
-    { x: -10, y: 30, z: -40 }, 
+    { x: 20, y: -30, z: -40 }, 
+    // { x: 40, y: -30, z: -50 }, 
   ];
 
   useFrame((state, delta) => {

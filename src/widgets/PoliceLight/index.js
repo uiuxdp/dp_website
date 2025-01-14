@@ -2,10 +2,6 @@
 import * as THREE from "three";
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
-import { Sphere } from "@react-three/drei";
-import { easing } from "maath";
-import { PointLightHelper } from "three";
 
 const glowRed = new THREE.MeshBasicMaterial({
   color: new THREE.Color(7, 0, 0.5),
@@ -20,74 +16,30 @@ const glowGreen = new THREE.MeshBasicMaterial({
   toneMapped: false,
 });
 
-
 const PoliceLight = (props) => {
-  const exhaust = useRef(null);
-  const clock =new THREE.Clock(false)
-  
-  // useFrame(() => {
-
-  //   console.log( clock.getElapsedTime() * 200 ,"exhaust.current.scale.x");
-  //   // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
-  //   // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
-  // })
-  
-
   return (
     <group {...props}>
-      {/* <mesh ref={exhaust} scale={[1, 1, 13]} position={[0, 1, 30]}  material-emissiveIntensity={10} >
-      <boxGeometry args={[2, 1, 2]} />
-        <meshBasicMaterial color="lightblue" />
-      </mesh> */}
+      <LightItem position={[-0.1, 0, 0]} initialMaterial={glowBlue} />
       <LightItem position={[0, 0, 0]} initialMaterial={glowRed} />
       <LightItem position={[0.1, 0, 0]} initialMaterial={glowBlue} />
-      <LightItem position={[-0.1, 0, 0]} initialMaterial={glowBlue} />
+      <LightItem position={[0.2, 0, 0]} initialMaterial={glowRed} />
     </group>
   );
 };
 
 export default PoliceLight;
 
-// const LightItem = (props) => {
-//   return (
-//     <mesh castShadow receiveShadow material={glowBlue}  {...props} >
-//       <boxGeometry args={[0.01, 0.08, 0.05]} />
-//     </mesh>
-//   );
-// };
-
 const LightItem = ({ initialMaterial, ...props }) => {
- 
-  const exhaust = useRef();
   const meshRef = useRef();
-  // const isOn = useRef(true);
-  // const blinkSpeed = 3;
-
-  // useFrame((state) => {
-  //   const elapsedTime = state.clock.getElapsedTime();
-  //   // Toggle light on and off based on time
-  //   isOn.current = Math.sin(elapsedTime * Math.PI * 2 * blinkSpeed) > 0;
-  //   const material = meshRef.current.material;
-  //   if (material) {
-  //     material.opacity = isOn.current ? 1 : 0.2; // Adjust opacity for blinking effect
-  //     material.transparent = true;
-  //   }
-  // });
   useFrame((state) => {
-    meshRef.current.scale.x = .5 + Math.sin(state.clock.getElapsedTime() * 1000)
-    meshRef.current.scale.y = .5 + Math.sin(state.clock.getElapsedTime() * 1000)
-  })
-
-
+    meshRef.current.scale.x =
+      0.5 + Math.sin(state.clock.getElapsedTime() * 1000);
+    meshRef.current.scale.y =
+      0.5 + Math.sin(state.clock.getElapsedTime() * 1000);
+  });
 
   return (
-  
-    <>
-    {/* <mesh ref={exhaust} scale={[1, 2, 1]}   {...props} >
-        <boxGeometry args={[0.06, 0.02, 0.05]}  />
-        <meshBasicMaterial />
-      </mesh> */}
-      <mesh
+    <mesh
       ref={meshRef}
       material={initialMaterial}
       castShadow
@@ -96,6 +48,81 @@ const LightItem = ({ initialMaterial, ...props }) => {
     >
       <boxGeometry args={[0.06, 0.02, 0.02]} />
     </mesh>
-    </>
   );
 };
+
+
+
+// "use client";
+// import * as THREE from "three";
+// import React, { useRef } from "react";
+// import { useFrame } from "@react-three/fiber";
+// import { Instances, Instance } from "@react-three/drei";
+
+// // Reusable PoliceLight Component
+// const PoliceLight = ({ lights, ...props }) => {
+
+
+// const glowRed = new THREE.MeshBasicMaterial({
+//   color: new THREE.Color(7, 0, 0.5),
+//   toneMapped: false,
+// });
+// const glowBlue = new THREE.MeshBasicMaterial({
+//   color: new THREE.Color(0, 0.5, 20),
+//   toneMapped: false,
+// });
+
+
+
+//   return (
+//     <Instances
+//       limit={lights.length} // Limit the number of instances
+//       castShadow
+//       receiveShadow
+//       {...props}
+//     >
+//       {console.log(lights,"lightslights")}
+      
+//       {lights.map((light, index) => (
+//         <React.Fragment key={index}>
+//                <boxGeometry args={[0.25, 0.05, 0.05]} />
+//                 <meshStandardMaterial emissive={index%0?"#00ca76":"red"} emissiveIntensity={8} toneMapped={false} />
+//           {/* {light.shape === "box" && <boxGeometry args={light.size} />}
+//           {light.shape === "sphere" && <sphereGeometry args={light.size} />} */}
+//         </React.Fragment>
+//       ))}
+
+//       {/* {lights.map((light, index) => (
+//         <meshBasicMaterial
+//           key={`material-${index}`}
+//           color={light.color}
+//           toneMapped={false}
+//         />
+//       ))} */}
+
+//       {lights.map((light, index) => (
+//         <LightItem
+//           key={`light-${index}`}
+//           position={light.position}
+//           materialIndex={index}
+//         />
+//       ))}
+//     </Instances>
+//   );
+// };
+
+// // LightItem Component
+// const LightItem = ({ materialIndex, ...props }) => {
+//   const ref = useRef();
+
+//   useFrame((state) => {
+//     ref.current.scale.x =
+//       0.5 + Math.sin(state.clock.getElapsedTime() * 1000);
+//       ref.current.scale.y =
+//       0.5 + Math.sin(state.clock.getElapsedTime() * 1000);
+//   });
+
+//   return <Instance ref={ref} materialIndex={materialIndex}  {...props} />;
+// };
+
+// export default PoliceLight;

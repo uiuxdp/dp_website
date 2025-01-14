@@ -2,12 +2,12 @@
 
 import LogoBar from "../LogoBar";
 import MenuBar from "../MenuBar";
-import { useHeader } from "./useHeader";
+import { useStickyBar } from "./useStickyBar";
 
 const StickyBar = ({}) => {
-  const { isScrollingDown, main } = useHeader();
+  const { isScrollingDown, main } = useStickyBar();
   return (
-    <header
+    <div
       ref={main}
       className={`fixed top-0 left-0 z-[48] w-full duration-500 ease-in-out bg-gradient-to-b  `}
     >
@@ -30,7 +30,7 @@ const StickyBar = ({}) => {
       >
         <MenuBar isScrolled={isScrollingDown} />
       </div>
-    </header>
+    </div>
   );
 };
 

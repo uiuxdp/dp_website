@@ -17,9 +17,7 @@ import { useControls } from "leva";
 
 const Car = forwardRef((props, ref) => {
   gsap.registerPlugin(ScrollTrigger);
-  const { nodes, materials, scene, animations } = useGLTF(
-    "/images/models/car3.glb"
-  );
+  const { nodes, materials, scene, animations } = useGLTF("/images/models/car3.glb");
 
   const instancedRef =useRef(null)
   useMemo(() => {
@@ -113,12 +111,54 @@ const { x, y, z } = useControls({
   z: { value: 1.75, min: -4, max: 4, step: 0.01 },
 });
 
+const policeLight1 = [
+  {
+    shape: "box",
+    size: [0.06, 0.02, 0.02],
+    position: [-0.1, 0, 0],
+    color: new THREE.Color(0, 0.5, 20), // Blue
+  },
+  {
+    shape: "box",
+    size: [0.06, 0.02, 0.02],
+    position: [0, 0, 0],
+    color: new THREE.Color(7, 0, 0.5), // Red
+  },
+  {
+    shape: "sphere",
+    size: [0.03, 16, 16],
+    position: [0.1, 0, 0],
+    color: new THREE.Color(0, 3, 1), // Green
+  },
+];
+
+const policeLight2 = [
+  {
+    shape: "sphere",
+    size: [0.05, 32, 32],
+    position: [-0.15, 0, 0],
+    color: new THREE.Color(5, 0.5, 1), // Purple
+  },
+  {
+    shape: "box",
+    size: [0.08, 0.03, 0.03],
+    position: [0.15, 0, 0],
+    color: new THREE.Color(1, 1, 20), // Light Blue
+  },
+];
+
+
+
+
   return (
     <group ref={ref} {...props} dispose={null}>
       {/* <primitive object={scene} /> */}
       <group  position={[x, y, z]}>
         {/* <GlowMaterialW/> */}
-        <PoliceLight />
+        {/* <PoliceLight /> */}
+        {/* <PoliceLight lights={policeLight1} position={[0, .5, 0]} /> */}
+        {/* <PoliceLight lights={policeLight1} position={[0, 1, 0]} /> */}
+        <PoliceLight lights={policeLight2} position={[0, 0, 0]} />
       </group>
 
       <group scale={0.007} >
@@ -248,3 +288,5 @@ const { x, y, z } = useControls({
 export default Car;
 
 useGLTF.preload("/images/models/car3.glb");
+
+

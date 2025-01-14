@@ -4,7 +4,7 @@ import * as THREE from "three";
 import Image from "next/image";
 import { Expo, Power3, gsap, Elastic } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { Canvas, extend, useFrame, useLoader } from "@react-three/fiber";
+import { Canvas, extend, useFrame, useLoader, useThree } from "@react-three/fiber";
 import {
   OrbitControls,
   AdaptiveDpr,
@@ -13,6 +13,7 @@ import {
   PerformanceMonitor,
   Environment,
   MeshReflectorMaterial,
+  BakeShadows,
 } from "@react-three/drei";
 import { useScene } from "./useScene";
 // import Drone from "./Drone";
@@ -32,6 +33,7 @@ import { Perf } from "r3f-perf";
 const Drone = dynamic(() => import("./Drone"), { ssr: false });
 // const Car = dynamic(() => import("./Car"), { ssr: false });
 const Car = lazy(() => import("./Car"));
+// const Cars = lazy(() => import("./Cars"));
 const Dubai = dynamic(() => import("./Dubai"), { ssr: false });
 import CameraRig from "@/components/CameraRig";
 import Background from "@/components/Background";
@@ -52,18 +54,24 @@ import Windows from "./Windows";
 import StreetLight from "./StreetLight";
 import  {BlendFunction}  from "postprocessing";
 import Road from "./Road";
+import { Carq, CarsInstance } from "./Cars";
+import ParticlesFromImage from "./Particles";
 extend({ UnrealBloomPass });
 
 const Scene = ({ parentRef, progressLine }) => {
   const { main, width, model, Loader, setModel, modelWrap } = useScene({
     parentRef,
   });
+
   gsap.registerPlugin(ScrollTrigger);
   const cameraWrapRef = useRef();
   const boatRef1 = useRef(null);
   const boatRef2 = useRef(null);
   const boatRef3 = useRef(null);
   const carRef = useRef(null);
+  const carRef1 = useRef(null);
+  const carRef2 = useRef(null);
+  const carRef3 = useRef(null);
   const cameraRef = useRef();
   const progressRef = useRef(0);
   const curveRef = useRef();
@@ -133,6 +141,12 @@ const Scene = ({ parentRef, progressLine }) => {
           transformOrigin: "left left",
         });
         gsap.set(carRef.current?.position, { z: 15, x: 0, y: 0.55 });
+        // gsap.set(cameraRef.current, {   keyframes: {
+        //   fov: [70, 100, 100, 70, 70],
+        //   ease: "power1.inOut"
+        // },});
+        gsap.set(carRef1.current?.position, { z: 15, x: -2, y: 0.55 });
+        gsap.set(carRef2.current?.position, { z: 15, x: 2, y: 0.55 });
         // gsap.set(cameraWrapRef.current?.position, { y: 10 });
         gsap.set([boatRef2.current.rotation, boatRef3.current.rotation], {
           x: -Math.PI / 2,
@@ -157,21 +171,22 @@ const Scene = ({ parentRef, progressLine }) => {
           // tl.to(".title2",{yPercent: -100,autoAlpha: 0}, "+=0.5")
           tl.to(progressLine.current, { scaleX: 1, duration: 10 });
           // tl.to(cameraWrapRef.current.position,{y:0, duration: 1},"<")
-          tl.to(carRef.current?.position, { z: -50, duration: 3 }, 0.6);
+          tl.to(carRef.current?.position, { z: -50, duration: 4 }, 0.7);
           tl.to(
             boatRef1.current.position,
             { x: 60, duration: 2, ease: "expo.inOut" },
-            1.6
+            2.6
           );
+          
           tl.to(
             boatRef2.current.position,
             { x: 60, duration: 2, ease: "expo.inOut" },
-            2
+            2.8
           );
           tl.to(
             boatRef3.current.position,
             { x: 60, duration: 2, ease: "expo.inOut" },
-            2.5
+            3.2
           );
           return tl;
         }
@@ -200,6 +215,7 @@ const Scene = ({ parentRef, progressLine }) => {
         //   //...add animations here...
         //   return tl;
         // }
+console.log(cameraRef.current,"cameraRef.current");
 
         const master = gsap.timeline({
           scrollTrigger: {
@@ -210,8 +226,14 @@ const Scene = ({ parentRef, progressLine }) => {
             pin: true,
             onUpdate({ progress, direction, isActive }) {
               progressRef.current = progress;
-              const pro = 1 - progress;
+              const pro = progress;
               const position = curveRef.current.getPointAt(pro);
+              
+              // if(pro>.5) {
+              //   cameraRef.current.fov.lerp(100);
+              // } else {
+              //   cameraRef.current.fov.lerp(70);
+              // }
               cameraRef.current.position.copy(position);
               // cameraRef.current.position.lerp(position, 0.1);
               cameraRef.current.updateMatrixWorld();
@@ -291,9 +313,24 @@ const Scene = ({ parentRef, progressLine }) => {
 
       <Bvh firstHitOnly>
         <Boats ref1={boatRef1} ref2={boatRef2} ref3={boatRef3} />
+        {/* <Cars ref1={carRef1} ref2={carRef2} ref3={carRef3} /> */}
       </Bvh>
+      <Suspense fallback={null}> 
+     
+      </Suspense>
+      {/* <Bvh firstHitOnly>
+     
+      </Bvh> */}
       {/* <Suspense fallback={null}> */}
       <Car ref={carRef} rotation={[0, -Math.PI, 0]} />
+      {/* <CarsInstance frames={1}  castShadow receiveShadow>
+        <group ref={carRef}  rotation={[0, -Math.PI, 0]}>
+        <Carq />
+        </group>
+        <Carq ref={carRef2} rotation={[0, -Math.PI, 0]}/>
+          <Carq ref={carRef3} rotation={[0, -Math.PI, 0]}/>
+      </CarsInstance> */}
+      {/* <Cars ref={carRef}/> */}
       {/* </Suspense> */}
 
       {/* 
@@ -312,6 +349,7 @@ const Scene = ({ parentRef, progressLine }) => {
       />
       <Windows />
       <Road/>
+      <ParticlesFromImage imageSrc="/images/loga.png" />
       <StreetLight position={[-1, -7, 0]} />
       <Ocean position-y={-4.5} scale={400} position-x={20} />
 
@@ -386,26 +424,26 @@ const Scene = ({ parentRef, progressLine }) => {
         </mesh>
       </group> */}
 
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <Cloud position={[35, 130, -45]} speed={0.2} opacity={1} />
         <Cloud position={[40, 140, -40]} speed={0.2} opacity={0.5} />
         <Cloud position={[45, 120, -45]} speed={0.2} opacity={1} />
         <Cloud position={[30, 112, -40]} speed={0.2} opacity={0.5} />
         <Cloud position={[30, 120, -40]} speed={0.2} opacity={0.75} />
-      </Suspense>
+      </Suspense> */}
 
       {/* <Effects disableGamma>
         <unrealBloomPass threshold={1}  strength={1.0} radius={0.5} />
       </Effects> */}
       {/* <Effects /> */}
-
+      <BakeShadows /> 
       <EffectComposer multisampling={2}>
         <Bloom mipmapBlur luminanceThreshold={1} />
-        <Vignette
-          offset={0.5} // vignette offset
-          darkness={0.5} // vignette darkness
-          eskil={false} // Eskil's vignette technique
-        />
+        {/* <Vignette
+          offset={0.5} 
+          darkness={0.5} 
+          eskil={false} 
+        /> */}
          {/* <Noise premultiply blendFunction={BlendFunction.SCREEN}  /> */}
 
         {/* <Scanline density={3} opacity={.2} /> */}

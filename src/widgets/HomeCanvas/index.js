@@ -75,13 +75,13 @@ export default function HomeCanvas({ parentRef }) {
         <div className={` w-full h-screen`}>
           <Canvas
             // shadows
-            dpr={1}
+            dpr={.9}
             // dpr={dpr}
-            gl={{ antialias: true }}
-            // gl={{
-            //   antialias: true,
-            //   powerPreference: "high-performance",
-            // }}
+            // gl={{ antialias: true }}
+            gl={{
+              antialias: true,
+              powerPreference: "high-performance",
+            }}
             // frameloop="demand"
             // performance={{ min: 0.5 }}
             // camera={{ position: [0, 0, 10], fov: 60 }}

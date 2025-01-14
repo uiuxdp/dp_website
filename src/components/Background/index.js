@@ -103,7 +103,7 @@ const Background = ({ backgroundColors }) => {
         <Gradient colorA={"#111"} colorB={"red"}/>
         </LayerMaterial></Sphere> */}
 
-      {/* <fog attach="fog"  args={["#fff", 20, 200]} /> */}
+      <fog attach="fog"  args={["#000", 20, 200]} />
       {/* <pointLight position={[10, -10, -20]} intensity={10} /> */}
       {/* <pointLight position={[-10, -10, -20]} intensity={10} /> */}
       {/* <SoftShadows samples={3} /> */}

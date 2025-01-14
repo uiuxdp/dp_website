@@ -28,8 +28,6 @@ export const useHomeBanner = () => {
         },
         0
       )
-        // tl.to([p1, p2], { scale: 1, autoAlpha: 1, ease: Expo.easeOut, duration: 1.5 }, 0.5)
-        // tl.addLabel("anim", "<")
         .play(0);
 
       // tl2.to(app3, { xPercent: 0, yPercent: 0 }, "<")

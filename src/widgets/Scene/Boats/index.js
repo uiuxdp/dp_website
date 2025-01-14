@@ -1,6 +1,8 @@
 "use client";
-import { Instances, useGLTF } from "@react-three/drei";
-import Boat from "../Boat";
+import { Instances, useGLTF, Instance } from "@react-three/drei";
+// import Boat from "../Boat";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
 function Boats({ ref1, ref2, ref3 }) {
   const { nodes, materials } = useGLTF("/images/models/boat.glb");
@@ -34,3 +36,21 @@ function Boats({ ref1, ref2, ref3 }) {
 
 export default Boats;
 useGLTF.preload("/images/models/boat.glb");
+
+const Boat = ({ boatRef }, ...props) => {
+  const item = useRef();
+
+  useFrame((state, delta) => {
+    const time = state.clock.getElapsedTime();
+    item.current.rotation.x = Math.sin(time) * 0.05;
+    item.current.rotation.y = Math.cos(time * 0.7) * 0.03;
+  });
+
+  return (
+    <group {...props}>
+      <group ref={boatRef} scale={150}>
+        <Instance ref={item} />
+      </group>
+    </group>
+  );
+};
