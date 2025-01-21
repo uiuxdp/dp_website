@@ -27,7 +27,6 @@ const Ocean = (props) => {
     [waterNormals]
   )
   useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta))
-console.log(ref.current,"ref.currentref.currentref. current");
 
   return (
     <group {...props}  dispose={null}>

@@ -1,10 +1,12 @@
 import HomeBanner from "@/widgets/HomeBanner";
+import dynamic from "next/dynamic";
 import HomeWidget from "@/widgets/HomeWidget";
+// const HomeWidget = dynamic(() => import("@/widgets/HomeWidget"), { ssr: false });
 
 export default async function Home({}) {
   return (
     <main className="min-h-screen">
-    
+
       <HomeBanner/>
       <HomeWidget />
 

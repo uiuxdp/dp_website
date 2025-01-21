@@ -9,9 +9,9 @@ import { ContactPopup } from "@/components/ContactPopup";
 import { carRef } from "@/recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { Loader } from "@react-three/drei";
-
 export default function HomeCanvas({ parentRef }) {
   gsap.registerPlugin(ScrollTrigger);
+
   const main = useRef(null);
   const progressLine = useRef(null);
   useGSAP(
@@ -73,6 +73,7 @@ export default function HomeCanvas({ parentRef }) {
       <div className="absolute top-0 left-0 w-full h-1 bg-red " ref={progressLine}></div>
       <div className="relative " id="scroll-container">
         <div className={` w-full h-screen`}>
+        <Suspense fallback={<div>im loading</div>}>
           <Canvas
             // shadows
             dpr={.9}
@@ -88,6 +89,7 @@ export default function HomeCanvas({ parentRef }) {
           >
             <Scene parentRef={main} progressLine={progressLine} />
           </Canvas>
+          </Suspense>
           <Loader />
         </div>
       </div>
@@ -106,7 +108,7 @@ export default function HomeCanvas({ parentRef }) {
       <div className="absolute bottom-[100px] left-0 w-full">
         <div className="container">
           <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-black uppercase mb-4 title2">
+            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title2">
               Securing dubai from above
             </h2>
           </div>
@@ -115,7 +117,7 @@ export default function HomeCanvas({ parentRef }) {
       <div className="absolute top-[200px] left-0 w-full">
         <div className="container">
           <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-black uppercase mb-4 title3">
+            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title3">
               On the ground around the clock
             </h2>
           </div>
@@ -125,7 +127,7 @@ export default function HomeCanvas({ parentRef }) {
       <div className="absolute top-[200px] left-0 w-full">
         <div className="container">
           <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-black uppercase mb-4 title4">
+            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title4">
               Securing our shores
             </h2>
           </div>

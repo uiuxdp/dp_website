@@ -4,7 +4,13 @@ import * as THREE from "three";
 import Image from "next/image";
 import { Expo, Power3, gsap, Elastic } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { Canvas, extend, useFrame, useLoader, useThree } from "@react-three/fiber";
+import {
+  Canvas,
+  extend,
+  useFrame,
+  useLoader,
+  useThree,
+} from "@react-three/fiber";
 import {
   OrbitControls,
   AdaptiveDpr,
@@ -14,6 +20,7 @@ import {
   Environment,
   MeshReflectorMaterial,
   BakeShadows,
+  Stage,
 } from "@react-three/drei";
 import { useScene } from "./useScene";
 // import Drone from "./Drone";
@@ -52,7 +59,7 @@ import Boats from "./Boats";
 // import Car from "./Car";
 import Windows from "./Windows";
 import StreetLight from "./StreetLight";
-import  {BlendFunction}  from "postprocessing";
+import { BlendFunction } from "postprocessing";
 import Road from "./Road";
 import { Carq, CarsInstance } from "./Cars";
 import ParticlesFromImage from "./Particles";
@@ -172,12 +179,13 @@ const Scene = ({ parentRef, progressLine }) => {
           tl.to(progressLine.current, { scaleX: 1, duration: 10 });
           // tl.to(cameraWrapRef.current.position,{y:0, duration: 1},"<")
           tl.to(carRef.current?.position, { z: -50, duration: 4 }, 0.7);
+          tl.seek(2, false);
           tl.to(
             boatRef1.current.position,
             { x: 60, duration: 2, ease: "expo.inOut" },
             2.6
           );
-          
+
           tl.to(
             boatRef2.current.position,
             { x: 60, duration: 2, ease: "expo.inOut" },
@@ -215,25 +223,19 @@ const Scene = ({ parentRef, progressLine }) => {
         //   //...add animations here...
         //   return tl;
         // }
-console.log(cameraRef.current,"cameraRef.current");
+        console.log(cameraRef.current, "cameraRef.current");
 
         const master = gsap.timeline({
           scrollTrigger: {
             start: "top top",
             trigger: parentRef.current,
-            end: "1800%",
+            end: "2200%",
             scrub: true,
             pin: true,
             onUpdate({ progress, direction, isActive }) {
               progressRef.current = progress;
               const pro = progress;
               const position = curveRef.current.getPointAt(pro);
-              
-              // if(pro>.5) {
-              //   cameraRef.current.fov.lerp(100);
-              // } else {
-              //   cameraRef.current.fov.lerp(70);
-              // }
               cameraRef.current.position.copy(position);
               // cameraRef.current.position.lerp(position, 0.1);
               cameraRef.current.updateMatrixWorld();
@@ -315,13 +317,12 @@ console.log(cameraRef.current,"cameraRef.current");
         <Boats ref1={boatRef1} ref2={boatRef2} ref3={boatRef3} />
         {/* <Cars ref1={carRef1} ref2={carRef2} ref3={carRef3} /> */}
       </Bvh>
-      <Suspense fallback={null}> 
-     
-      </Suspense>
+      <Suspense fallback={null}></Suspense>
       {/* <Bvh firstHitOnly>
      
       </Bvh> */}
       {/* <Suspense fallback={null}> */}
+
       <Car ref={carRef} rotation={[0, -Math.PI, 0]} />
       {/* <CarsInstance frames={1}  castShadow receiveShadow>
         <group ref={carRef}  rotation={[0, -Math.PI, 0]}>
@@ -348,7 +349,7 @@ console.log(cameraRef.current,"cameraRef.current");
         scale={30}
       />
       <Windows />
-      <Road/>
+      <Road />
       <ParticlesFromImage imageSrc="/images/loga.png" />
       <StreetLight position={[-1, -7, 0]} />
       <Ocean position-y={-4.5} scale={400} position-x={20} />
@@ -436,15 +437,16 @@ console.log(cameraRef.current,"cameraRef.current");
         <unrealBloomPass threshold={1}  strength={1.0} radius={0.5} />
       </Effects> */}
       {/* <Effects /> */}
-      <BakeShadows /> 
+      <BakeShadows />
       <EffectComposer multisampling={2}>
         <Bloom mipmapBlur luminanceThreshold={1} />
+
         {/* <Vignette
           offset={0.5} 
-          darkness={0.5} 
+          darkness={0.5} <
           eskil={false} 
         /> */}
-         {/* <Noise premultiply blendFunction={BlendFunction.SCREEN}  /> */}
+        {/* <Noise premultiply blendFunction={BlendFunction.SCREEN}  /> */}
 
         {/* <Scanline density={3} opacity={.2} /> */}
       </EffectComposer>

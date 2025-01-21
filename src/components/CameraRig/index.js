@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
   const curveRef1 = useRef()
 
-
+const {camera}=useThree()
   const ref = useRef();
   //   const progress = useRef(0);
   const CURVE_DISTANCE = 10;
@@ -30,19 +30,6 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
     new THREE.Vector3(40, 100, -4 * CURVE_DISTANCE),
     new THREE.Vector3(50, 150, -4 * CURVE_DISTANCE),
     // new THREE.Vector3(40, 300, -4 * CURVE_DISTANCE),
-   
-  
-   
-   
-    
-   
-    
-    
-   
-
-   
-    
-   
     
   ];
 
@@ -126,10 +113,8 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
 
   useFrame((state, delta) => {
     // state.camera.lookAt(30,0,0)
-
     const progress = progressRef.current;
 
-    // Determine the current segment
     const segment = Math.min(Math.floor(progress * camePoints.length), camePoints.length - 1);
     const nextSegment = Math.min(segment + 1, camePoints.length - 1);
 
@@ -138,7 +123,8 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
     const lookAtX = THREE.MathUtils.lerp(camePoints[segment].x, camePoints[nextSegment].x, segmentProgress);
     const lookAtY = THREE.MathUtils.lerp(camePoints[segment].y, camePoints[nextSegment].y, segmentProgress);
     const lookAtZ = THREE.MathUtils.lerp(camePoints[segment].z, camePoints[nextSegment].z, segmentProgress);
-
+    camera.fov += ((progress > 0.12 && progress < 0.16 ? 120 : 70) - camera.fov) * 0.05
+    camera.updateProjectionMatrix()
     // Update camera lookAt
     state.camera.lookAt(lookAtX, lookAtY, lookAtZ);
     state.camera.updateMatrixWorld(); // Ensure matrix updates
@@ -233,7 +219,7 @@ const CameraRig = ({ cameraRef ,progressRef, curveRef }) => {
       <PerspectiveCamera
         makeDefault
         ref={cameraRef}
-        fov={75}
+        fov={70}
         aspect={window.innerWidth / window.innerHeight}
         // near={0.1}
         // far={100}

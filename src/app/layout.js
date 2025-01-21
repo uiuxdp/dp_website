@@ -6,6 +6,7 @@ import GlobalProviders from "@/components/GlobalProviders";
 import nextFetch from "@/utils/nextFetch";
 import { GLOBAL } from "@/constants/apiRoutes";
 import Header from "@/components/Header";
+import StickyBar from '@/components/StickyBar';
 
 // const inter = Anek_Malayalam({
 //   subsets: ["latin"],
@@ -51,6 +52,7 @@ export default async function RootLayout({ children }) {
       <body className={`${dp_font.className} ${dp_font.variable}`}>
         <GlobalProviders>
           <Header />
+          <StickyBar />
           {children}
         </GlobalProviders>
       </body>

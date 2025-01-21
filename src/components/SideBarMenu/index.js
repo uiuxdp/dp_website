@@ -8,12 +8,14 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 
-const SideBarMenu = ({ data }) => {
+const SideBarMenu = ({ isScrolled }) => {
   return (
     <>
-      <Sheet>
-        <SheetTrigger className="text-white">Open</SheetTrigger>
-        <SheetContent>
+      <Sheet >
+        <SheetTrigger aria-label="hamburger menu" className={` duration-500 ease-in-out py-5 text-2xl ${isScrolled ? "text-[#1a1a1a]" : "  text-white"}`}>
+        <i className="icon-menu block"></i>
+        </SheetTrigger>
+        <SheetContent side="left">
           <SheetHeader>
             <SheetTitle>Are you absolutely sure?</SheetTitle>
             <SheetDescription>

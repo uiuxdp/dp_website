@@ -1,4 +1,4 @@
-import { Expo, Power3, gsap, Elastic } from "gsap";
+import { gsap } from "gsap";
 import { useLayoutEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import useGetDeviceType from "@/hooks/useGetDeviceType";
@@ -13,7 +13,7 @@ export const useHomeBanner = () => {
       const fade = self.selector(`.fade`);
       const cards = self.selector(`.card`);
 
-      gsap.set(fade, { y: 100, autoAlpha: 0 });
+      gsap.set(fade, { y: 100, autoAlpha: 0, willChange:"transform" });
 
       const tl = gsap.timeline({ repeat: 0, paused: true });
       tl.to(
@@ -23,7 +23,7 @@ export const useHomeBanner = () => {
           autoRound: false,
           stagger: 0.1,
           autoAlpha: 1,
-          ease: Expo.easeOut,
+          ease: "Expo.easeOut",
           duration: 1.5,
         },
         0

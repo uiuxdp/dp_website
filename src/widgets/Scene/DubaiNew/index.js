@@ -27,7 +27,7 @@ const DubaiNew = (props) => {
     "/images/models/dubai1.glb"
   );
 
-applyProps(materials.White, { metalness: 0.5, roughness: 0.1, color: '#181818' })
+applyProps(materials.White, { metalness: 0.5, roughness: .9, color: '#181818' })
 applyProps(materials["Mat"], { metalness: 0, roughness: 0.3, color: '#000' })
 applyProps(materials[""], { metalness: 0.6, roughness: 0.3, color: '#000' })
 

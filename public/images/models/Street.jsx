@@ -9,7 +9,7 @@ Title: Bridge street light 3
 */
 
 import React from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Merged, useGLTF } from '@react-three/drei'
 
 export function Model(props) {
   const { nodes, materials } = useGLTF('/street-transformed.glb')
@@ -26,6 +26,18 @@ export function Model(props) {
       <mesh geometry={nodes.Material2_8.geometry} material={materials['0132_LightGray']} rotation={[-Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Material2_9.geometry} material={materials.Galvanized_steel} rotation={[-Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Material2_10.geometry} material={materials.Metal_Rough_0} rotation={[-Math.PI / 2, 0, 0]} />
+
+      <Merged meshes={nodes}>
+      {({ Material2, Material2_2, Material2_3 }) => (
+        <>
+          <Material2 />
+          <Material2_2 position={[1, 2, 3]} />
+          <Material2_3 position={[4, 5, 6]} />
+        </>
+      )}
+    </Merged>
+
+
     </group>
   )
 }

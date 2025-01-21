@@ -284,7 +284,7 @@ const policeLight2 = [
     </group>
   );
 })
-
+Car.displayName = "Car";
 export default Car;
 
 useGLTF.preload("/images/models/car3.glb");

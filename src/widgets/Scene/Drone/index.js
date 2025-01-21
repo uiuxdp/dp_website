@@ -80,17 +80,17 @@ const Drone = ({parentRef},props) => {
   const CURVE_DISTANCE = 10;
   // Define the CatmullRomCurve3
   const points = [
-    new THREE.Vector3(30, 5, -1 * CURVE_DISTANCE),
-    new THREE.Vector3(40, 5, -2.5 * CURVE_DISTANCE),
-    new THREE.Vector3(30, 5, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(10, 4, -4 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 4, -3 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 4, -2 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 4, -1.5 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 4, 0.5 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 5, 1.5 * CURVE_DISTANCE),
-    new THREE.Vector3(0, 8, 2.5 * CURVE_DISTANCE),
     new THREE.Vector3(0, 15, 3.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 8, 2.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 5, 1.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, 0.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -1.5 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -2 * CURVE_DISTANCE),
+    new THREE.Vector3(0, 4, -3 * CURVE_DISTANCE),
+    new THREE.Vector3(10, 4, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(30, 5, -4 * CURVE_DISTANCE),
+    new THREE.Vector3(40, 5, -2.5 * CURVE_DISTANCE),
+    new THREE.Vector3(30, 5, -1 * CURVE_DISTANCE),
   ];
   //   const curve = new THREE.CatmullRomCurve3(points);
 
@@ -116,7 +116,7 @@ const Drone = ({parentRef},props) => {
         // markers:true,
         trigger: parentRef?.current,
         onUpdate({ progress, direction, isActive }) {
-          const pro = 1 - progress;
+          const pro = progress;
           const position = curveRef.current.getPointAt(pro);
           // const lookAtTarget = curveRef.current.getPointAt((pro + 0.01) % 1);
           cameraRail.current.position.copy(position);

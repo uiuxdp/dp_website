@@ -91,7 +91,9 @@ export function CarsInstance({ children, ...props }) {
   return (
     <Merged meshes={instances} {...props}>
       {(instances) => (
-        <context.Provider value={instances} children={children} />
+        <context.Provider value={instances} >
+          {children}
+        </context.Provider>
       )}
     </Merged>
   );
@@ -126,5 +128,5 @@ export const Carq= forwardRef((props, ref) => {
   );
 })
 // export default Carq;
-
+Carq.displayName = "Carq";
 useGLTF.preload("/images/models/car3.glb");

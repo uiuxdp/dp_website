@@ -19,6 +19,7 @@ export const useHeader = () => {
   useGSAP(
     (context, contextSafe) => {
       const subHeader = context.selector(".sub-header");
+      
 
       const showAnim = gsap
         .from(subHeader, {
@@ -56,7 +57,7 @@ export const useHeader = () => {
         all: function () {},
       });
     },
-    { scope: main }
+    { scope: main, dependencies:[width] }
   );
 
   useEffect(() => {
@@ -84,5 +85,6 @@ export const useHeader = () => {
   return {
     main,
     isScrollingDown,
+    width
   };
 };

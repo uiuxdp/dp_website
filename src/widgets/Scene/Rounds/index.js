@@ -1,9 +1,11 @@
 "use client";
 import { Expo, Power3, gsap, Elastic } from "gsap";
 import * as THREE from "three";
+import { Color, AdditiveBlending } from 'three'
 import {
   Line,
   MeshTransmissionMaterial,
+  shaderMaterial,
   useAnimations,
   useGLTF,
 } from "@react-three/drei";
@@ -11,13 +13,9 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 // import { EffectComposer, Bloom, ToneMapping } from '@react-three/postprocessing'
-import { easing } from "maath";
-import { useGSAP } from "@gsap/react";
-import { SphereGeometry } from "three";
 
 const Rounds = (props) => {
   gsap.registerPlugin(ScrollTrigger);
-
   return (
     <>
       {/* <group

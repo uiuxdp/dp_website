@@ -22,7 +22,7 @@ export const useStickyBar = () => {
 
       const showAnim = gsap
         .from(subHeader, {
-          yPercent: -100,
+          yPercent: 100,
           paused: true,
           duration: 0.2,
         })
@@ -79,8 +79,6 @@ export const useStickyBar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-
 
   return {
     main,

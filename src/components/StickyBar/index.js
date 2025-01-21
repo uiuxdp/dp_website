@@ -9,26 +9,53 @@ const StickyBar = ({}) => {
   return (
     <div
       ref={main}
-      className={`fixed top-0 left-0 z-[48] w-full duration-500 ease-in-out bg-gradient-to-b  `}
+      className={`fixed bottom-0 left-0 z-[48] w-full duration-500 ease-in-out bg-gradient-to-b  `}
     >
-      {/* from-black/80 via-black/40 to-transparent */}
       <div
-        className={`main-header duration-500 ease-in-out relative z-20 ${
-          isScrollingDown
-            ? "bg-white from-black/0 via-black/0 to-transparent"
-            : ""
-        }`}
+        className={`sub-header duration-500 ease-in-out lg:bg-white flex justify-between`}
       >
-        <LogoBar isScrolled={isScrollingDown} />
-      </div>
-      <div
-        className={`sub-header duration-500 ease-in-out ${
-          isScrollingDown
-            ? "bg-white from-black/0 via-black/0 to-transparent"
-            : ""
-        }`}
-      >
-        <MenuBar isScrolled={isScrollingDown} />
+        <div>
+          <button
+            className="text-[32px]  bg-white rounded-full lg:rounded-none p-4 lg:border-0  lg:border-r  group hover:bg-slate-300 will-change-transform ease-in-out duration-500 text-primary inline-flex"
+            aria-label="happiness"
+          >
+            <span className="">
+              <i className="icon-happiness block will-change-transform ease-in-out duration-500 group-hover:scale-110"></i>
+            </span>
+          </button>
+          <button
+            className="text-[32px]  bg-white rounded-full lg:rounded-none p-4 lg:border-0  lg:border-r  group hover:bg-slate-300 will-change-transform ease-in-out duration-500 text-primary inline-flex"
+            aria-label="Voice of Customer"
+          >
+            <span className="">
+              <i className="icon-o4 block will-change-transform ease-in-out duration-500 group-hover:scale-110"></i>
+            </span>
+          </button>
+          <button
+            className="text-[32px]  bg-white rounded-full lg:rounded-none p-4 lg:border-0  lg:border-r  group hover:bg-slate-300 will-change-transform ease-in-out duration-500 text-primary inline-flex items-center"
+            aria-label="Services"
+          >
+            <span className="">
+              <i className="icon-apps block will-change-transform ease-in-out duration-500 group-hover:scale-110"></i>
+            </span>
+            <span className="text-[16px] ms-2">Services</span>
+          </button>
+        </div>
+        <div>
+          <button
+            className="text-2xl p-4  border-0 border-r group  hover:bg-slate-300 will-change-transform ease-in-out duration-500 "
+            aria-label="Location"
+          >
+            <i className="icon-location block will-change-transform ease-in-out duration-500 group-hover:scale-110"></i>
+          </button>
+
+          <button
+            className="text-2xl p-4  border-0 border-r group  hover:bg-slate-300 will-change-transform ease-in-out duration-500 "
+            aria-label="Chat"
+          >
+            <i className="icon-chat block will-change-transform ease-in-out duration-500 group-hover:scale-110"></i>
+          </button>
+        </div>
       </div>
     </div>
   );
