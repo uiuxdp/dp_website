@@ -16,24 +16,27 @@ export default function HomeCanvas({ parentRef }) {
   const progressLine = useRef(null);
   useGSAP(
     (context, contextSafe) => {
-      gsap.set([".title2",".title3",".title4"],{autoAlpha: 0, yPercent: 100})
+      gsap.set([".title2", ".title3", ".title4"], {
+        autoAlpha: 0,
+        yPercent: 100,
+      });
       const tl1 = gsap.timeline({
         scrollTrigger: {
           trigger: main.current,
-          start:"top top",
+          start: "top top",
           end: "1600%",
           scrub: true,
         },
       });
       // tl1.to(car.position, { z: -60 });
 
-      tl1.to(".title1",{yPercent: -300,autoAlpha: 0})
-      tl1.to(".title2",{yPercent: -300, autoAlpha: 1}, "<")
-      tl1.to(".title2",{autoAlpha: 0}, "<.1")
-      tl1.to(".title3",{yPercent: 0, autoAlpha: 1}, "<")
-      tl1.to(".title3",{yPercent: -300,autoAlpha: 0}, "+=0.5")
-      tl1.to(".title4",{yPercent: 0, autoAlpha: 1}, "<")
-      tl1.to(".title4",{yPercent: -600,autoAlpha: 0}, "+=0.5")
+      tl1.to(".title1", { yPercent: -300, autoAlpha: 0 });
+      tl1.to(".title2", { yPercent: -300, autoAlpha: 1 }, "<");
+      tl1.to(".title2", { autoAlpha: 0 }, "<.1");
+      tl1.to(".title3", { yPercent: 0, autoAlpha: 1 }, "<");
+      tl1.to(".title3", { yPercent: -300, autoAlpha: 0 }, "+=0.5");
+      tl1.to(".title4", { yPercent: 0, autoAlpha: 1 }, "<");
+      tl1.to(".title4", { yPercent: -600, autoAlpha: 0 }, "+=0.5");
 
       ScrollTrigger.matchMedia({
         "(min-width: 992px)": function () {},
@@ -70,25 +73,28 @@ export default function HomeCanvas({ parentRef }) {
 
   return (
     <section className={`overflow-hidden relative`} id="HomeBanner" ref={main}>
-      <div className="absolute top-0 left-0 w-full h-1 bg-red " ref={progressLine}></div>
+      <div
+        className="absolute top-0 left-0 w-full h-1 bg-red "
+        ref={progressLine}
+      ></div>
       <div className="relative " id="scroll-container">
         <div className={` w-full h-screen`}>
-        <Suspense fallback={<div>im loading</div>}>
-          <Canvas
-            // shadows
-            dpr={.9}
-            // dpr={dpr}
-            // gl={{ antialias: true }}
-            gl={{
-              antialias: true,
-              powerPreference: "high-performance",
-            }}
-            // frameloop="demand"
-            // performance={{ min: 0.5 }}
-            // camera={{ position: [0, 0, 10], fov: 60 }}
-          >
-            <Scene parentRef={main} progressLine={progressLine} />
-          </Canvas>
+          <Suspense fallback={<div>im loading</div>}>
+            <Canvas
+              // shadows
+              dpr={0.9}
+              // dpr={dpr}
+              // gl={{ antialias: true }}
+              gl={{
+                antialias: true,
+                powerPreference: "high-performance",
+              }}
+              // frameloop="demand"
+              // performance={{ min: 0.5 }}
+              // camera={{ position: [0, 0, 10], fov: 60 }}
+            >
+              <Scene parentRef={main} progressLine={progressLine} />
+            </Canvas>
           </Suspense>
           <Loader />
         </div>
@@ -104,7 +110,6 @@ export default function HomeCanvas({ parentRef }) {
         </div>
       </div>
 
-
       <div className="absolute bottom-0 left-0 w-full">
         <div className="container">
           <div className="max-w-[400px] title2 bg-black/25 rounded-[30px] backdrop-blur-md border border-white/[0.13] p-6">
@@ -112,13 +117,14 @@ export default function HomeCanvas({ parentRef }) {
               Securing dubai from above
             </h2>
             <p className="text-sm text-white">
-              Our aerial units patrol the skies, ensuring peace and safety from above, watching over every corner of Dubai.
+              Our aerial units patrol the skies, ensuring peace and safety from
+              above, watching over every corner of Dubai.{" "}
             </p>
             <button className="btn btn-white mt-5">Oyoon</button>
           </div>
         </div>
       </div>
-      
+
       <div className="absolute bottom-0 left-0 w-full">
         <div className="container">
           <div className="max-w-[400px] title3 bg-black/25 rounded-[30px] backdrop-blur-md border border-white/[0.13] p-6">
@@ -126,9 +132,10 @@ export default function HomeCanvas({ parentRef }) {
               On the ground around the clock
             </h2>
             <p className="text-sm text-white">
-              Our aerial units patrol the skies, ensuring peace and safety from above, watching over every corner of Dubai.
+              Our dedicated officers and advanced technology keep every road and
+              neighborhood safe, ensuring a secure city day and night.
             </p>
-            <button className="btn btn-white mt-5">Oyoon</button>
+            <button className="btn btn-white mt-5">Home Security</button>
           </div>
         </div>
       </div>
@@ -140,9 +147,10 @@ export default function HomeCanvas({ parentRef }) {
               Securing our shores
             </h2>
             <p className="text-sm text-white">
-              Our ground units patrol the shores, ensuring peace and safety from above, watching over every corner of Dubai.
+              From harbors to open waters, our marine units are vigilant,
+              safeguarding Dubai’s coasts and waterways.
             </p>
-            <button className="btn btn-white mt-5">Oyoon</button>
+            <button className="btn btn-white mt-5">Sail Safely</button>
           </div>
         </div>
       </div>
