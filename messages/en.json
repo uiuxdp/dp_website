@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "banner": {
+    "title": "Dubai Police Drone Box Quick",
+    "content": "Policing, Innovation & Leadership, Second Batch. Register Now",
+    "search": "Search Services.."
+  },
+  "services": {
+    "reporting": {
+      "title": "Reporting Services",
+      "content": "All smart reporting services under the same bundle."
+    },
+    "traffic": {
+      "title": "Traffic Services",
+      "content": "Everything related to traffic services, including fine inquiry and payment.",
+      "yes": "Yes",
+      "no": "No"        
+      
+    }
+  }
+} 

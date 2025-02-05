@@ -1,0 +1,23 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Dienstleistungen",
+    "contact": "Kontakt"
+  },
+  "banner": {
+    "title": "Dubai Polizei Drohnenbox",
+    "content": "Polizeiarbeit, Innovation & Führung, Zweiter Durchgang. Jetzt registrieren",
+    "search": "Dienste suchen.."
+  },
+  "services": {
+    "reporting": {
+      "title": "Berichtsdienste",
+      "content": "Alle intelligenten Berichtsdienste in einem Paket."
+    },
+    "traffic": {
+      "title": "Verkehrsdienste",
+      "content": "Alles rund um Verkehrsdienste, einschließlich Bußgeldauskunft und Zahlung."
+    }
+  }
+} 

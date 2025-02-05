@@ -10,7 +10,7 @@ const LogoBar = ({ isScrolled }) => {
           <div className="sm:hidden">
             <SideBarMenu isScrolled={isScrolled} />
           </div>
-          <div className="aspect aspect-[180/72] h-[72px] relative hidden sm:block">
+          <div className={`aspect aspect-[180/72] ${isScrolled ? "h-[62px]" : "h-[72px]"} ease-in-out duration-500 logo-government relative hidden sm:block`}>
             <Image
               src="/images/logo-gov-dubai.svg"
               className="object-cover"
@@ -44,7 +44,11 @@ const LogoBar = ({ isScrolled }) => {
           </div>
 
           <div className="sm:hidden">
-            S
+            <button className={`${
+                      isScrolled ? "text-[#1a1a1a]" : "  text-white"
+                    }`}>
+            <i className="icon-seach"></i>
+            </button>
           </div>
         </div>
       </div>

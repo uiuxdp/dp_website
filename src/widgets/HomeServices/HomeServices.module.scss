@@ -1,0 +1,13 @@
+.section {
+  background-color: #f8f9fa;
+  
+  :global {
+    .service-card {
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+} 

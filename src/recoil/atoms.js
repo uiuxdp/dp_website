@@ -18,12 +18,10 @@ const localStorageEffect = (key) => ({ setSelf, onSet }) => {
   }
 };
 
-
 export const getUniqueKey = () => {
   const time = new Date().getTime();
   return time;
 };
-
 
 export const cartCountState = atom({
   key: 'cartCount',
@@ -31,11 +29,11 @@ export const cartCountState = atom({
   effects_UNSTABLE: [localStorageEffect('cartCount')],
 });
 
-
 export const headerState = atom({
   key: `header_${getUniqueKey()}`,
   default: false,
 });
+
 export const dialogState = atom({
   key: "dialogState", 
   default: false,     
@@ -45,3 +43,15 @@ export const carRef = atom({
   key: "refAtom", 
   default: null,
 });
+
+export const isMenuOpen = atom({
+  key: "menuOpenKey", 
+  default: false,
+});
+
+
+export const activeLinkAtom = atom({
+  key: "activeLinkAtomKey", 
+  default: "",
+});
+

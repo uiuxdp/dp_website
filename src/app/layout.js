@@ -51,7 +51,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={`${dp_font.className} ${dp_font.variable}`}>
         <GlobalProviders>
-          <Header />
+          {/* <Header /> */}
           <StickyBar />
           {children}
         </GlobalProviders>

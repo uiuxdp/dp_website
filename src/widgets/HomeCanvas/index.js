@@ -27,13 +27,13 @@ export default function HomeCanvas({ parentRef }) {
       });
       // tl1.to(car.position, { z: -60 });
 
-      tl1.to(".title1",{yPercent: -100,autoAlpha: 0}, "+=0.5")
-      tl1.to(".title2",{yPercent: 0, autoAlpha: 1}, "<")
-      tl1.to(".title2",{yPercent: -100,autoAlpha: 0}, "+=0.5")
+      tl1.to(".title1",{yPercent: -300,autoAlpha: 0})
+      tl1.to(".title2",{yPercent: -300, autoAlpha: 1}, "<")
+      tl1.to(".title2",{autoAlpha: 0}, "<.1")
       tl1.to(".title3",{yPercent: 0, autoAlpha: 1}, "<")
-      tl1.to(".title3",{yPercent: -100,autoAlpha: 0}, "+=0.5")
+      tl1.to(".title3",{yPercent: -300,autoAlpha: 0}, "+=0.5")
       tl1.to(".title4",{yPercent: 0, autoAlpha: 1}, "<")
-      tl1.to(".title4",{yPercent: -100,autoAlpha: 0}, "+=0.5")
+      tl1.to(".title4",{yPercent: -600,autoAlpha: 0}, "+=0.5")
 
       ScrollTrigger.matchMedia({
         "(min-width: 992px)": function () {},
@@ -105,31 +105,44 @@ export default function HomeCanvas({ parentRef }) {
       </div>
 
 
-      <div className="absolute bottom-[100px] left-0 w-full">
+      <div className="absolute bottom-0 left-0 w-full">
         <div className="container">
-          <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title2">
+          <div className="max-w-[400px] title2 bg-black/25 rounded-[30px] backdrop-blur-md border border-white/[0.13] p-6">
+            <h2 className="text-2xl font-semibold text-white uppercase mb-4 ">
               Securing dubai from above
             </h2>
+            <p className="text-sm text-white">
+              Our aerial units patrol the skies, ensuring peace and safety from above, watching over every corner of Dubai.
+            </p>
+            <button className="btn btn-white mt-5">Oyoon</button>
           </div>
         </div>
       </div>
-      <div className="absolute top-[200px] left-0 w-full">
+      
+      <div className="absolute bottom-0 left-0 w-full">
         <div className="container">
-          <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title3">
+          <div className="max-w-[400px] title3 bg-black/25 rounded-[30px] backdrop-blur-md border border-white/[0.13] p-6">
+            <h2 className="text-2xl font-semibold text-white uppercase mb-4 ">
               On the ground around the clock
             </h2>
+            <p className="text-sm text-white">
+              Our aerial units patrol the skies, ensuring peace and safety from above, watching over every corner of Dubai.
+            </p>
+            <button className="btn btn-white mt-5">Oyoon</button>
           </div>
         </div>
       </div>
 
-      <div className="absolute top-[200px] left-0 w-full">
+      <div className="absolute bottom-0 left-0 w-full">
         <div className="container">
-          <div className="max-w-[500px]">
-            <h2 className="text-5xl font-semibold text-white uppercase mb-4 title4">
+          <div className="max-w-[400px] title4 bg-black/25 rounded-[30px] backdrop-blur-md border border-white/[0.13] p-6">
+            <h2 className="text-2xl font-semibold text-white uppercase mb-4 ">
               Securing our shores
             </h2>
+            <p className="text-sm text-white">
+              Our ground units patrol the shores, ensuring peace and safety from above, watching over every corner of Dubai.
+            </p>
+            <button className="btn btn-white mt-5">Oyoon</button>
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@ import SliderProgressButton from "./SliderProgressButton";
 
 export default function HomeBanner({ data }) {
   const { width } = useGetDeviceType();
-  const { main } = useHomeBanner();
+  const { main, sliderRef,contentRef } = useHomeBanner();
   const swiperRef = useRef(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isSwiper, setIsSwiper] = useState(null);
@@ -81,7 +81,7 @@ export default function HomeBanner({ data }) {
 
   return (
     <section
-      className={`overflow-hidden  bg-black min-h-screen flex items-end ${style.section}`}
+      className={`overflow-hidden  bg-white min-h-screen flex items-end ${style.section}`}
       ref={main}
     >
       <SliderProgressButton
@@ -90,7 +90,7 @@ export default function HomeBanner({ data }) {
         slideDuration={slideDuration}
         timeLeft={timeLeft}
       />
-      <div className="absolute top-0 w-full left-0 h-full">
+      <div className="absolute top-0 w-full left-0 h-full" ref={sliderRef} >
         <Slider
           className={"h-full swiper2"}
           customSettings={customSettings}
@@ -124,10 +124,11 @@ export default function HomeBanner({ data }) {
           })}
         </Slider>
       </div>
-      <div className="z-10 w-full py-10 bg-gradient-to-b from-[#032e1d00] to-[#000000]">
+      {/* bg-gradient-to-b from-[#032e1d00] to-[#000000] */}
+      <div className="z-10 w-full py-10 " ref={contentRef}>
         <div className="container">
           <div className="w-full max-w-[832px]  mx-auto ">
-            <Slider className="mySwiper" customSettings={customSettings1}>
+            <Slider className="mySwiper dp-fade-out" customSettings={customSettings1}>
               {slides?.map((item, i) => {
                 return (
                   <SwiperSlide key={i}>
@@ -144,9 +145,9 @@ export default function HomeBanner({ data }) {
               })}
             </Slider>
 
-            <div className=" px-[11px] py-[10px] bg-white rounded-lg justify-start items-center gap-[11px] hidden lg:flex mb-8 fade">
+            <div className=" px-[11px] py-[10px] bg-white rounded-full justify-start items-center gap-[11px] hidden lg:flex mb-8 fade dp-fade-out">
               <div className="text-[#006c44] text-2xl leading-none ">
-                <i className="icon-seach"></i>
+                <i className="icon-seach block"></i>
               </div>
               <input
                 className="text-[#999999] text-sm py-3 flex-grow"
@@ -154,7 +155,7 @@ export default function HomeBanner({ data }) {
               />
             </div>
 
-            <div className="fade">
+            <div className="fade dp-fade-out">
               <div className="text-center mb-5 ">
                 <div className=" p-2 justify-center items-center inline-flex gap-4">
                   <button
@@ -221,10 +222,11 @@ export default function HomeBanner({ data }) {
             })}
           </div> */}
         </div>
-
-        <div className="fade container ">
+<div className="dp-fade-out">
+        <div className="fade container " >
           <ServiceCardSlider />
         </div>
+      </div>
       </div>
     </section>
   );

@@ -40,17 +40,16 @@ export default function ServiceCardSlider({ data }) {
         },
         768: {
           slidesPerView: 4,
-          spaceBetween: 16,
+          spaceBetween: 14,
         },
         1024: {
           slidesPerView: 6,
-          spaceBetween: 16,
+          spaceBetween: 14,
         },
       }
   };
-
   return (
-    <Slider className="serviceCardSlider !pt-9" customSettings={customSettings1}>
+    <Slider className="serviceCardSlider !pt-9  !pb-[38px]" customSettings={customSettings1}>
       {cards?.map((item, i) => {
         return (
           <SwiperSlide key={i}>

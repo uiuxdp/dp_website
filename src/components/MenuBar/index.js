@@ -37,9 +37,11 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import "./Menubar.scss"
 
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import LangSwitcher from "../LangSwitcher";
+import MegaMenu from "../MegaMenu";
 
 const MenuBar = ({ isScrolled }) => {
   return (
@@ -86,22 +88,14 @@ const MenuBar = ({ isScrolled }) => {
               })} */}
               </ul>
 
-              <NavigationMenu>
+              {/* <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger  className={`py-5 duration-500 ease-in-out inline-block ${
                       isScrolled ? "text-[#1a1a1a]" : "  text-white"
                     }`}>Item One</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      {/* <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
-                          <NavigationMenuLink
-                            className={navigationMenuTriggerStyle()}
-                          >
-                            Documentation
-                          </NavigationMenuLink>
-                        </Link>
-                      </NavigationMenuItem> */}
+                    
 
                       <ul class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                         <li>
@@ -268,7 +262,7 @@ const MenuBar = ({ isScrolled }) => {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 </NavigationMenuList>
-              </NavigationMenu>
+              </NavigationMenu> */}
 
               <Menubar>
                 {menu?.map((item, i) => {
@@ -311,7 +305,7 @@ const MenuBar = ({ isScrolled }) => {
                                   ) : (
                                     <Link
                                       href="/"
-                                      className={`py-[10px] px-4 text-sm duration-500 ease-in-out block text-[#1a1a1a] `}
+                                      className={`py-[10px] px-4 text-sm duration-500 ease-in-out relative block text-[#1a1a1a]`}
                                     >
                                       {sublink?.label}
                                     </Link>
@@ -338,9 +332,10 @@ const MenuBar = ({ isScrolled }) => {
                           key={i}
                           role="menuitem"
                         >
+                          {/* before:content-[''] before:block before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:rounded-t-full */}
                           <Link
                             href="/"
-                            className={`py-5 duration-500 ease-in-out inline-block  ${
+                            className={`py-5 duration-500 ease-in-out inline-block relative before:bg-primary     ${
                               isScrolled ? "text-[#1a1a1a]" : "  text-white"
                             }`}
                           >
@@ -351,6 +346,8 @@ const MenuBar = ({ isScrolled }) => {
                     </React.Fragment>
                   );
                 })}
+
+                {/* <MegaMenu/> */}
                 {/* <MenubarMenu>
                 <MenubarTrigger
                   className={`py-5 duration-500 ease-in-out inline-block ${
@@ -483,6 +480,7 @@ export default MenuBar;
 const menu = [
   {
     label: "Home",
+
   },
   {
     label: "About Us",

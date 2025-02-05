@@ -152,3 +152,7 @@ html {
 .fade {
   /* @apply opacity-0 will-change-transform; */
 }
+
+.nav-link {
+  @apply py-[10px] px-4 text-sm duration-500 ease-in-out relative block text-[#1a1a1a];
+}
